@@ -13,7 +13,8 @@
     "aktionskarten.js": "file:../aktionskarten.js",
     "bootstrap-vue": "^2.0.0-rc.11",
     "vue": "^2.5.17",
-    "vue-router": "^3.0.1"
+    "vue-router": "^3.0.1",
+    "webpack-cli": "^3.1.2"
   },
   "browserslist": [
     "> 1%",
@@ -28,15 +29,18 @@
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
     "babel-preset-stage-3": "^6.24.1",
+    "compression-webpack-plugin": "^2.0.0",
     "cross-env": "^5.0.5",
     "css-loader": "^0.28.7",
-    "file-loader": "^1.1.4",
+    "dotenv-webpack": "^1.5.7",
+    "file-loader": "^2.0.0",
     "i": "^0.3.6",
     "npm": "^6.4.1",
-    "vue-loader": "^13.0.5",
-    "vue-template-compiler": "^2.4.4",
-    "webpack": "^3.6.0",
-    "webpack-dev-server": "^2.9.1",
-    "dotenv-webpack": "^1.5.7"
+    "vue-loader": "^15.4.2",
+    "vue-style-loader": "^4.1.2",
+    "vue-template-compiler": "^2.5.17",
+    "webpack": "^4.6.0",
+    "webpack-bundle-analyzer": "^2.13.1",
+    "webpack-dev-server": "^3.1.9"
   }
 }
