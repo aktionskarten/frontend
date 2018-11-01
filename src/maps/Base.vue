@@ -60,8 +60,8 @@ export default {
 
       // log-in if we have credentials
       if (this.$route.params.secret) {
-        this.secret = this.$route.params.secret
         this.login(this.secret)
+        this.secret = this.$route.params.secret
       }
     }
   }
