@@ -20,13 +20,22 @@ export default {
   },
   methods: {
     async render () {
-      console.log("rendering", this.view, this.model)
-      if (!this.view && this.model) {
-        var mode = !this.model.bbox || this.$route.name == 'map.bbox' ? 'bbox' : ''
-        console.log("mode:", this.$route.name, mode)
+      if (!this.model) {
+        return;
+      }
+
+      var mode = this.$route.name == 'map.bbox' ? 'bbox' : ''
+      if (!this.view) {
         this.view = new View('map', this.model, mode)
-        this.view.on('modeChanged', (mode) => console.log("mode changed to " + mode))
+        this.view.on('modeChanged', e => {
+          console.log("changing to mode=",e.value);
+          let params = {id: this.model.id, secret: this.secret};
+          let name = e.value == 'bbox' ? 'map.bbox' : 'map';
+          this.$router.push({name: name, params: params})
+        })
         await this.view.init();
+      } else {
+        this.view.mode = mode;
       }
     }
   }
