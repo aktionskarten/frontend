@@ -159,6 +159,9 @@ export default {
       }
     }
   },
+  async mounted () {
+    console.log("MapForm mounted");
+  },
   methods: {
     addAttribute() {
       if (!this.newAttribute.key || !this.newAttribute.value) {
@@ -187,11 +190,19 @@ export default {
     },
     async onSubmit() {
       if (this.isNew) {
-        let model = await this.api.createMap(this.map)
-        this.$router.push({name: 'map.edit', params: {id: model.id, secret: model.secret}})
+        let map = await this.api.createMap(this.map)
+        if (!map) {
+          console.warn("could not save");
+          return;
+        }
+        let params = {id: map.id, secret: map.secret};
+        this.$router.push({name: 'map.edit', params: params})
       } else {
         console.log("pre-save", this.map);
-        this.model.save()
+        if (!this.model.save()) {
+          console.warn("could not save");
+          return;
+        }
         this.showSavedAlert = true
         this.$router.replace({name: 'map.edit', params: {id: this.map.id, secret: this.secret}})
       }
@@ -199,16 +210,22 @@ export default {
   },
   computed: {
     adminLink () {
-      let rel = {name: 'map.edit', params: {id: this.map.id, secret: this.secret}}
-      return window.location.href.split('#')[0] + this.$router.resolve(rel).href
+      if (this.map && this.secret) {
+        let rel = {name: 'map.edit', params: {id: this.map.id, secret: this.secret}}
+        return window.location.href.split('#')[0] + this.$router.resolve(rel).href
+      }
     },
     publicLink () {
-      let rel = this.$router.resolve({name: 'map', params: {id: this.map.id}})
-      return window.location.href.split('#')[0] + rel.href
+      if (this.map && this.secret) {
+        let rel = this.$router.resolve({name: 'map', params: {id: this.map.id}})
+        return window.location.href.split('#')[0] + rel.href
+      }
     },
     bboxLink() {
-      let params = {name: 'map.bbox', params: {id: this.map.id, secret: this.secret}}
-      return {name: 'map.bbox', params: params}
+      if (this.map && this.secret) {
+        let params = {name: 'map.bbox', params: {id: this.map.id, secret: this.secret}}
+        return {name: 'map.bbox', params: params}
+      }
     },
     isEditable () {
       return this.isNew || (this.model && this.model.authenticated)
