@@ -14,7 +14,7 @@
       <b-navbar-nav class="ml-auto">
         <b-nav-form>
           <router-link :to="{name: 'map.new'}">
-            <b-button size="sm" variant="secondary">
+            <b-button variant="primary">
               neue Karte erstellen
             </b-button>
           </router-link>
