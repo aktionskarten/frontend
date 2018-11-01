@@ -30,9 +30,9 @@
             :plaintext="!isEditable"></b-form-input>
         </b-form-group>
 
-        <b-form-group v-if="map.bbox" label="Kartenausschnitt" horizontal>
+        <b-form-group label="Kartenausschnitt" horizontal>
           <b-form-row>
-              <b-col>
+              <b-col v-if="map.bbox">
                 <b-form-input :value="map.bbox" plaintext></b-form-input>
               </b-col>
               <b-col>
@@ -107,31 +107,7 @@
 
         <b-button v-if="isEditable" :disabled="!isSubmitable" class="float-right mb-5" type="submit" variant="primary"> {{ this.isNew ? 'Karte erstellen' : 'Aktualisieren' }}</b-button>
 
-        <b-modal id="mapModal" v-model="hasBbox" size="lg" title="Karte erstellt" ok-title="Karte auswählen" @ok="$router.push(bboxLink)" ok-only>
-          <div class="container">
-            <p>
-              Damit nur du und deine Freunde die Karte bearbeiten können gibt es
-              einen speziellen <b>Admin-Link</b> für deine Aktionskarte. Speicher
-              ihn dir gut ab, da du nur über diesen Link deine Karten verändern
-              kannst:
-            </p>
-
-
-            <b-input-group prepend="Admin-Link">
-              <b-form-input :value="adminLink"></b-form-input>
-            </b-input-group>
-
-            <p class="mt-4">
-              Für alle anderen und die Öffentlichkeit verwende den
-              <em>Public-Link</em>. Dieser ist nur zum Ansehen der Karte und lässt
-              keine Bearbeitung zu:
-            </p>
-
-            <b-input-group prepend="Public-Link">
-              <b-form-input :value="publicLink"></b-form-input>
-            </b-input-group>
-          </div>
-        </b-modal>
+        <modal-map-new :map="map" :secret="secret" v-if="hasBbox" @ok="$router.push(bboxLink)"></modal-map-new>
       </b-form>
     </div>
   </div>
@@ -139,8 +115,11 @@
 </template>
 
 <script>
+import ModalMapNew from "@/maps/modals/ModalMapNew.vue"
+
 export default {
   props: ['api', 'model', 'secret'],
+  components: {'modal-map-new': ModalMapNew},
   data () {
     return {
       showSavedAlert: false,
@@ -209,24 +188,6 @@ export default {
     },
   },
   computed: {
-    adminLink () {
-      if (this.map && this.secret) {
-        let rel = {name: 'map.edit', params: {id: this.map.id, secret: this.secret}}
-        return window.location.href.split('#')[0] + this.$router.resolve(rel).href
-      }
-    },
-    publicLink () {
-      if (this.map && this.secret) {
-        let rel = this.$router.resolve({name: 'map', params: {id: this.map.id}})
-        return window.location.href.split('#')[0] + rel.href
-      }
-    },
-    bboxLink() {
-      if (this.map && this.secret) {
-        let params = {name: 'map.bbox', params: {id: this.map.id, secret: this.secret}}
-        return {name: 'map.bbox', params: params}
-      }
-    },
     isEditable () {
       return this.isNew || (this.model && this.model.authenticated)
     },
@@ -238,6 +199,12 @@ export default {
     },
     isSubmitable () {
       return true //this.validName == null
+    },
+    bboxLink() {
+      if (this.map && this.secret) {
+        let params = {name: 'map.bbox', params: {id: this.map.id, secret: this.secret}}
+        return {name: 'map.bbox', params: params}
+      }
     },
   }
 }
