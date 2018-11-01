@@ -11,6 +11,7 @@
             label-for="nameInput"
             :invalidFeedback="invalidMinLenFeedback(map.name)"
             :state="validate(map.name)"
+            description="Der Name wird als Überschrift auf deiner Aktionskarte sein."
             horizontal>
           <b-form-input id="nameInput" placeholder="Name deiner Karte"
             v-model.trim="map.name" :state="validate(map.name)"
@@ -22,17 +23,28 @@
             label-for="placeInput"
             :invalidFeedback="invalidMinLenFeedback(map.place)"
             :state="validate(map.place)"
+            description="Ein Ort ist notwendig damit die Leute wo deine Aktion stattfindet. Er wird auch auf der Karte unter dem Namen erscheinen."
             horizontal>
           <b-form-input id="placeInput" placeholder="Ort wo deine Aktion ist"
             v-model.trim="map.place" :state="validate(map.place)"
             :plaintext="!isEditable"></b-form-input>
-          <b-form-input v-if="map.bbox" :value="map.bbox" plaintext></b-form-input>
-          <b-badge v-if="!isNew && isEditable" :to="bboxLink" >Kartenausschnitt ändern</b-badge>
+        </b-form-group>
+
+        <b-form-group v-if="map.bbox" label="Kartenausschnitt" horizontal>
+          <b-form-row>
+              <b-col>
+                <b-form-input :value="map.bbox" plaintext></b-form-input>
+              </b-col>
+              <b-col>
+                <b-badge v-if="!isNew && isEditable" :to="bboxLink" >Kartenausschnitt ändern</b-badge>
+              </b-col>
+            </b-form-row>
         </b-form-group>
 
         <b-form-group
             label="Datum"
             label-for="dateInput"
+            description="Mit Datum und Zeit wissen Menschen wo sie wann sein müssen. Beides wird auch auf der Karte neben dem Ort erscheinen."
             horizontal>
           <b-row class="my-1">
             <b-col sm="3">
@@ -47,6 +59,7 @@
         <b-form-group
             label="Beschreibung"
             label-for="descriptionTextarea"
+            description="Pack hier deinen Aufruf rein. Er wird auf der Rückseite zum Beispiel beim PDF-Export auf der Rückseite der Aktionskarte erscheinen."
             horizontal>
           <b-form-textarea id="descriptionTextarea"
                            v-model="map.description"
@@ -56,52 +69,40 @@
         </b-form-group>
 
         <b-form-group
-            label="Legende"
-            label-for="attributesInput"
-            horizontal>
+          label="Legende"
+          label-for="attributesInput"
+          description="Hier gespeichert Schlüssel-Werte-Paare sollen dir
+          ermöglichen wichtige Informationen zu hinterlegen. Beispiele sind
+          <i>Twitter-@account</i>, <i>EA-0891234</i> oder
+          <i>Hashtag-#B0803</i>. Diese werden dann auf deiner Aktionskarte
+          hinterlegt."
+          horizontal>
 
-          <b-container>
-            <b-row>
-              <b-col cols="6" v-if="!isEditable">
-                <dl class="row" v-for="(val,i) in map.attributes">
-                  <dt class="col-4 pl-0">{{val[0]}}</dt>
-                  <dd class="col-8">{{val[1]}}</dd>
-                </dl>
-              </b-col>
+          <dl class="mx-0 row" v-if="!isEditable" v-for="(val,i) in map.attributes">
+            <dt class="col-2 pl-0">{{val[0]}}</dt>
+            <dd class="col-10">{{val[1]}}</dd>
+          </dl>
 
-              <b-col cols="6" class="px-0" v-if="isEditable">
-                <b-list-group>
-                  <b-list-group-item v-for="(val,i) in map.attributes"
-                    class="d-flex justify-content-between align-items-center">
-                    {{val[0]}} - {{val[1]}}
-                      <b-badge @click="removeAttribute(i)" variant="danger" >×</b-badge>
-                  </b-list-group-item>
-                  <b-list-group-item>
-                    <b-row class="my-1">
-                      <b-col>
-                        <b-form-input size="sm" placeholder="Schlüssel" class="text-center" v-model="newAttribute.key"></b-form-input>
-                      </b-col>
-                      <b-col>
-                        <b-form-input size="sm" placeholder="Wert" class="text-center" v-model="newAttribute.value"></b-form-input>
-                      </b-col>
-                      <b-col class="d-flex align-items-center">
-                        <b-button @click="addAttribute" size="sm">Hinzufügen</b-button>
-                      </b-col>
-                    </b-row>
-                  </b-list-group-item>
-                </b-list-group>
-              </b-col>
-              <b-col align-self="center" v-if="isEditable">
-                <p class="ml-3 text-right text-muted">
-                  Hier gespeichert Schlüssel-Werte-Paare sollen dir ermöglichen
-                  wichtige Informationen zu hinterlegen. Beispiele sind
-                  <i>Twitter-@account</i>, <i>EA-0891234</i> oder
-                  <i>Hashtag-#B0803</i>. Diese werden dann auf deiner
-                  Aktionskarte hinterlegt.
-                </p>
-              </b-col>
-            </b-row>
-          </b-container>
+          <b-list-group v-if="isEditable">
+            <b-list-group-item v-for="(val,i) in map.attributes"
+              class="d-flex justify-content-between align-items-center">
+              {{val[0]}} - {{val[1]}}
+                <b-badge @click="removeAttribute(i)" variant="danger" >×</b-badge>
+            </b-list-group-item>
+            <b-list-group-item>
+              <b-row class="my-1">
+                <b-col>
+                  <b-form-input size="sm" placeholder="Schlüssel" class="text-center" v-model="newAttribute.key"></b-form-input>
+                </b-col>
+                <b-col>
+                  <b-form-input size="sm" placeholder="Wert" class="text-center" v-model="newAttribute.value"></b-form-input>
+                </b-col>
+                <b-col class="d-flex align-items-center">
+                  <b-button @click="addAttribute" size="sm">Hinzufügen</b-button>
+                </b-col>
+              </b-row>
+            </b-list-group-item>
+          </b-list-group>
         </b-form-group>
 
         <b-button v-if="isEditable" :disabled="!isSubmitable" class="float-right mb-5" type="submit" variant="primary"> {{ this.isNew ? 'Karte erstellen' : 'Aktualisieren' }}</b-button>
