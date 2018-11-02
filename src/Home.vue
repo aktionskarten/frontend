@@ -3,7 +3,7 @@
     <navbar></navbar>
     <div class="container">
       <div class="jumbotron bg-white">
-        <h1 class="display-4">Karten für die direkte Aktion</h1>
+        <h1 class="display-4">Karten für deine direkte Aktion</h1>
         <p class="lead">
           Eine Aktionskarte besteht aus einem Kartenausschnitt in dem wichtige
           Informationen wie eine Demoroute oder interessante Orte markiert sind.
