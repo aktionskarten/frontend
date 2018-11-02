@@ -1,26 +1,21 @@
 <template>
-<b-modal id="mapModal" :visible="true" size="lg" title="Karte erstellt" @ok="$emit('ok')" ok-title="Karte auswählen" ok-only>
+  <b-modal id="mapModal" :visible="true" size="lg" :title="'Karte '+this.map.name+' erstellt'" @ok="$emit('ok')" ok-title="Kartenausschnitt auswählen" ok-only>
   <div class="container">
     <p>
-      Damit nur du und deine Freunde die Karte bearbeiten können gibt es
-      einen speziellen <b>Admin-Link</b> für deine Aktionskarte. Speicher
-      ihn dir gut ab, da du nur über diesen Link deine Karten verändern
-      kannst:
+      Damit nur du und deine Freunde die Karte bearbeiten können gibt es ein
+      zufallgeneriertes Passwort:
     </p>
 
+    <pre class="text-center">{{secret}}</pre>
 
-    <b-input-group prepend="Admin-Link">
-      <b-form-input :value="adminLink"></b-form-input>
-    </b-input-group>
-
-    <p class="mt-4">
-      Für alle anderen und die Öffentlichkeit verwende den
-      <em>Public-Link</em>. Dieser ist nur zum Ansehen der Karte und lässt
-      keine Bearbeitung zu:
+    <p>
+      Nur wer im Besitz des Passworts ist kann die Karte bearbeiten. Deinen
+      Mitstreiter*innen schickst du somit den kompletten Link. Dem Rest nur den
+      den Teil ohne Passwort:
     </p>
 
-    <b-input-group prepend="Public-Link">
-      <b-form-input :value="publicLink"></b-form-input>
+    <b-input-group :prepend="publicLink">
+      <b-form-input :value="secret"></b-form-input>
     </b-input-group>
   </div>
 </b-modal>
@@ -31,16 +26,19 @@ export default {
   name: 'navbar',
   props: ['map', 'secret'],
   computed: {
+    baseUrl() {
+      return window.location.href.split('#')[0]
+    },
     adminLink () {
       if (this.map && this.secret) {
         let rel = {name: 'map', params: {id: this.map.id, secret: this.secret}}
-        return window.location.href.split('#')[0] + this.$router.resolve(rel).href
+        return  this.$router.resolve(rel).href
       }
     },
     publicLink () {
       if (this.map && this.secret) {
-        let rel = this.$router.resolve({name: 'map', params: {id: this.map.id}})
-        return window.location.href.split('#')[0] + rel.href
+        let rel = {name: 'map', params: {id: this.map.id}}
+        return this.baseUrl + this.$router.resolve(rel).href + '/'
       }
     },
   }

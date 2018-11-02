@@ -107,7 +107,7 @@
 
         <b-button v-if="isEditable" :disabled="!isSubmitable" class="float-right mb-5" type="submit" variant="primary"> {{ this.isNew ? 'Karte erstellen' : 'Aktualisieren' }}</b-button>
 
-        <modal-map-new :map="map" :secret="secret" v-if="hasBbox" @ok="$router.push(bboxLink)"></modal-map-new>
+        <modal-map-new :map="map" :secret="secret" v-if="isEditable && hasBbox" @ok="$router.push(bboxLink)"></modal-map-new>
       </b-form>
     </div>
   </div>
