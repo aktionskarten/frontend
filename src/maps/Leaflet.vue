@@ -19,9 +19,14 @@ export default {
     'model': 'render',
     'lang': function() { window.location.reload() }
   },
+  mounted () {
+    console.log("MapLeaflet mounted");
+    this.render();
+  },
   methods: {
     async render () {
       if (!this.model) {
+        console.warn("aborting no model");
         return;
       }
 
