@@ -15,8 +15,15 @@ const i18n = {
         'authorization': 'Authorization',
         'share': {
           'label': 'Share',
-          'social': 'Social networks',
-          'html': 'Blog (HTML)'
+          'social': {
+            link: 'Social networks',
+            title: 'Share this map on a social media plattform',
+            msg: 'Map for {{name}} on {{date}} in {{place}}\n\nPDF: {{-linkPDF}}',
+          },
+          'html': {
+            link: 'Blog (HTML)',
+            title: 'Embedd this map into your own website',
+          }
         }
       },
       'home': {
@@ -92,8 +99,15 @@ const i18n = {
         'authorization': 'Authorisierung',
         'share': {
           'label': 'Teilen',
-          'social': 'Soziale Netzwerke',
-          'html': 'Blog (HTML)'
+          'social': {
+            link: 'Soziale Netzwerke',
+            title: 'Teile diese Karte in einem Sozialen Netzwerk',
+            msg: 'Aktionskarte für {{name}} am {{date}} in {{place}}\n\nPDF: {{-linkPDF}}',
+          },
+          'html': {
+            link: 'Blog (HTML)',
+            title: 'Binde diese Karte in deine eigene Website ein',
+          }
         }
       },
       'home': {

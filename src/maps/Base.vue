@@ -12,8 +12,8 @@
       <template slot="navbar" v-if="model">
         <b-navbar-nav class="ml-auto" v-if="model && model.exports">
           <b-nav-item-dropdown :text="$t('navbar.share.label')" right>
-            <b-dropdown-item>{{$t('navbar.share.social')}}</b-dropdown-item>
-            <b-dropdown-item>{{$t('navbar.share.html')}}</b-dropdown-item>
+            <b-dropdown-item @click="showModalShareSocial=true">{{$t('navbar.share.social.link')}}</b-dropdown-item>
+            <b-dropdown-item @click="showModalShareHTML=true">{{$t('navbar.share.html.link')}}</b-dropdown-item>
           </b-nav-item-dropdown>
           </b-nav-item-dropdown>
           <b-nav-item-dropdown text="Download" right>
@@ -34,7 +34,10 @@
       </template>
     </navbar>
 
-    <b-modal id="modalLogin" ref="modal" size="sm" :title="$t('navbar.authorization')" :ok-title="$t('navbar.login')" @ok="tryLogin" centered>
+    <modal-share-social v-model="showModalShareSocial" :model="model" :lang="lang"></modal-share-social>
+    <modal-share-html v-model="showModalShareHTML" :model="model" :lang="lang"></modal-share-html>
+
+    <b-modal id="modalLogin" ref="modalLogin" size="sm" :title="$t('navbar.authorization')" :ok-title="$t('navbar.login')" @ok="tryLogin" centered>
       <div class="container">
         <b-form @submit.stop.prevent="login">
            <b-form-input id="inputToken" :state="inputSecretState" placeholder="Admin Token" v-model.trim="inputSecret"></b-form-input>
@@ -48,14 +51,21 @@
 
 <script>
 import NavBar from '@/NavBar.vue'
+import ModalShareSocial from "@/maps/modals/ModalShareSocial.vue"
+import ModalShareHTML from "@/maps/modals/ModalShareHTML.vue"
 
 import {Api, MapModel} from 'aktionskarten.js'
 
+//var api = new Api('https://staging.aktionskarten.org') //process.env.API_ENDPOINT)
 var api = new Api(process.env.API_ENDPOINT)
 
 export default {
   name: 'app',
-  components: {'navbar': NavBar},
+  components: {
+    'navbar': NavBar,
+    'modal-share-html': ModalShareHTML,
+    'modal-share-social': ModalShareSocial,
+  },
   props: ['lang'],
   data() {
     return {
@@ -63,7 +73,9 @@ export default {
       model: null,
       secret: null,
       inputSecret: '',
-      inputSecretState: null
+      inputSecretState: null,
+      showModalShareSocial: false,
+      showModalShareHTML: false,
     }
   },
   async mounted () {
@@ -71,7 +83,10 @@ export default {
     this.fetchData()
   },
   watch: {
-    '$route': 'fetchData'
+    '$route': 'fetchData',
+    'showModalShareHTML': function() {
+      console.log("showModalShareHTML", this.showModalShareHTML)
+    }
   },
   methods: {
     async tryLogin(evt) {
@@ -79,7 +94,7 @@ export default {
       if (await this.login(this.inputSecret)) {
         this.inputSecret = ''
         this.inputSecretState = null;
-        this.$refs.modal.hide()
+        this.$refs.modalLogin.hide()
       } else {
         console.warn("login failed");
         this.inputSecretState = false;
