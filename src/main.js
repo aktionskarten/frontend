@@ -17,6 +17,7 @@ import NavBar from './NavBar.vue'
 import MapBase from './maps/Base.vue'
 import MapForm from './maps/Form.vue'
 import MapLeaflet from './maps/Leaflet.vue'
+import MapExternal from './maps/External.vue'
 
 Vue.use(Router)
 Vue.use(BootstrapVue)
@@ -42,6 +43,7 @@ const router = new Router({
         { name: "map", path: ':id/map/:secret?', component: MapLeaflet},
       ]
     },
+    { name: "map.external", path: '/:lang/maps/:id/external', component: MapExternal},
     { path: '*', redirect: '/de/home' }
   ]
 })
