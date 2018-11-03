@@ -27,6 +27,12 @@ const i18n = {
       'tutorial': {
         'headline': 'How can I create an Aktionskarte?',
       },
+      'contact': {
+        'headline': 'Mail',
+        'introduction': 'You have comments, questions or want to contact us? Just write us an eamil',
+        'preGPG': 'If possible then encrypt your mail. Our PGP key can be found <a href="{{gpgLink}}">here</a>  or just get it from a public key server.',
+        'postGPG': 'You can as well download the key with your mail client. Pay attention that the <i>fingerprint</i> is the same as above.',
+      },
       'form': {
         'createMap': 'Create new map',
         'editMap': 'Edit map',
