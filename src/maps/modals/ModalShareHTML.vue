@@ -20,11 +20,6 @@ export default {
     prop: 'visible',
     event: 'change'
   },
-  methods: {
-    foo(evt) {
-      console.log(evt);
-    }
-  },
   computed: {
     iframe() {
       if (!this.model) {
