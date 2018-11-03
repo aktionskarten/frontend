@@ -2,6 +2,9 @@ const i18n = {
   en: {
     translation: {
       'navbar': {
+        'home': 'Home',
+        'tutorial': 'Tutorial',
+        'contact': 'Contact',
         'newMap': 'Create new map',
         'map': 'Map',
         'exportAsPDF': 'as PDF',
@@ -20,6 +23,9 @@ const i18n = {
         'headline': 'Maps for you political actions',
         'description': 'An Aktionskarte consists of of map extract where you can find important informations like a demo route or marked interesting places. These maps should help you and your comrades to locate yourself in an unkown area.',
         'mapListing': 'Below you can find already created public maps:',
+      },
+      'tutorial': {
+        'headline': 'How can I create an Aktionskarte?',
       },
       'form': {
         'createMap': 'Create new map',
@@ -67,6 +73,9 @@ const i18n = {
   de: {
     translation: {
       'navbar': {
+        'home': 'Überblick',
+        'tutorial': 'Anleitung',
+        'contact': 'Kontakt',
         'newMap': 'neue Karte erstellen',
         'map': 'Karte',
         'exportAsPDF': 'als PDF',
@@ -85,6 +94,15 @@ const i18n = {
         'headline': 'neue Karte erstellen',
         'description': 'Eine Aktionskarte besteht aus einem Kartenausschnitt in dem wichtige Informationen wie eine Demoroute oder interessante Orte markiert sind. So eine Karte soll dir und deinen Mitstreiter*innen helfen sich am Ort des Geschehens leichter zurechtzufinden.',
         'mapListing': 'Im folgenden findest bereits erstellte öffentliche Karten:'
+      },
+      'tutorial': {
+        'headline': 'Wie erstelle ich eine Aktionskarte?',
+      },
+      'contact': {
+        'headline': 'Mail',
+        'introduction': 'Ihr habt Anmerkungen, Fragen oder wollt mit uns in Kontakt treten? Schreibt uns einfach eine Mail',
+        'preGPG': 'Wenn möglich dann am besten verschlüsselt. Unser PGP Schlüssel findet ihr <a href="{{gpgLink}}">hier</a> oder ladet ihn von einem öffentlichen Schlüsselserver runter.',
+        'postGPG': 'Ihr könnt ihn natürlich auch über euren Mailclient runterladen. Achtet dabei dass der <i>Fingerprint</i> dem obigen entspricht.',
       },
       'form': {
         'createMap': 'Neue Aktionskarte erstellen',

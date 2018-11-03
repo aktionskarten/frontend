@@ -11,6 +11,8 @@ import "bootstrap-vue/dist/bootstrap-vue.css"
 
 import App from './App.vue'
 import Home from './Home.vue'
+import Contact from './Contact.vue'
+import Tutorial from './Tutorial.vue'
 import NavBar from './NavBar.vue'
 import MapBase from './maps/Base.vue'
 import MapForm from './maps/Form.vue'
@@ -29,7 +31,9 @@ const i18n = new VueI18Next(i18next);
 
 const router = new Router({
   routes: [
-    { name: "home", path: '/:lang', component: Home, props: true},
+    { name: "home", path: '/:lang/home', component: Home, props: true},
+    { name: "tutorial", path: '/:lang/tutorial', component: Tutorial, props: true},
+    { name: "contact", path: '/:lang/contact', component: Contact, props: true},
     { path: '/:lang/maps', component: MapBase, props: true,
       children: [
         { name: "map.new", path: 'new', component: MapForm},
@@ -38,7 +42,7 @@ const router = new Router({
         { name: "map", path: ':id/map/:secret?', component: MapLeaflet},
       ]
     },
-    { path: '*', redirect: '/de' }
+    { path: '*', redirect: '/de/home' }
   ]
 })
 

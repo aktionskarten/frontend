@@ -11,6 +11,11 @@
 
   <b-collapse is-nav id="nav_collapse">
     <slot>
+      <b-navbar-nav>
+        <b-nav-item :to="{name: 'home', params: {lang: lang}}">{{$t('navbar.home')}}</b-nav-item>
+        <b-nav-item :to="{name: 'tutorial', params: {lang: lang}}">{{$t('navbar.tutorial')}}</b-nav-item>
+        <b-nav-item :to="{name: 'contact', params: {lang: lang}}">{{$t('navbar.contact')}}</b-nav-item>
+      </b-navbar-nav>
     </slot>
 
     <b-navbar-nav class="ml-auto">
@@ -20,13 +25,13 @@
       </b-nav-item-dropdown>
 
       <slot name="navbar">
-      <b-nav-form v-if="$route.name != 'map.new'">
-        <router-link :to="{name: 'map.new'}">
-          <b-button variant="primary">
-            {{$t("navbar.newMap")}}
-          </b-button>
-        </router-link>
-      </b-nav-form>
+        <b-nav-form v-if="$route.name != 'map.new'">
+          <router-link :to="{name: 'map.new', params: {lang: lang}}">
+            <b-button variant="primary">
+              {{$t("navbar.newMap")}}
+            </b-button>
+          </router-link>
+        </b-nav-form>
       </slot>
     </b-navbar-nav>
   </b-collapse>
