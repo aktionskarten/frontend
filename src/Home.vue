@@ -1,17 +1,16 @@
 <template>
   <div>
-    <navbar></navbar>
+    <navbar :lang="lang"></navbar>
     <div class="container">
       <div class="jumbotron bg-white">
-        <h1 class="display-4">Karten für deine direkte Aktion</h1>
+        <h1 class="display-4">
+          {{$t('home.headline')}}
+        </h1>
         <p class="lead">
-          Eine Aktionskarte besteht aus einem Kartenausschnitt in dem wichtige
-          Informationen wie eine Demoroute oder interessante Orte markiert sind.
-          So eine Karte soll dir und deinen Mitstreiter*innen helfen sich am Ort
-          des Geschehens leichter zurechtzufinden.
+          {{$t('home.description')}}
           <br />
           <br />
-          Im folgenden findest bereits erstellte öffentliche Karten:
+          {{$t('home.mapListing')}}
         </p>
 
         <div class="row ">
@@ -47,6 +46,7 @@ var api = new Api(process.env.API_ENDPOINT)
 export default {
   name: 'home',
   components: {'navbar': NavBar},
+  props: ['lang'],
   data () {
     return {
       maps: []

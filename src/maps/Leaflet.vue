@@ -8,7 +8,7 @@
 import {View} from 'aktionskarten.js'
 
 export default {
-  props: ['api', 'model', 'secret'],
+  props: ['api', 'model', 'secret', 'lang'],
   data() {
     return {
       view: null,
@@ -16,7 +16,8 @@ export default {
   },
   watch: {
     '$route': 'render',
-    'model': 'render'
+    'model': 'render',
+    'lang': function() { window.location.reload() }
   },
   methods: {
     async render () {
@@ -29,11 +30,12 @@ export default {
         this.view = new View('map', this.model, mode)
         this.view.on('modeChanged', e => {
           console.log("changing to mode=",e.value);
-          let params = {id: this.model.id, secret: this.secret};
+          let params = {id: this.model.id, secret: this.secret, lang: this.lang};
           let name = e.value == 'bbox' ? 'map.bbox' : 'map';
           this.$router.push({name: name, params: params})
         })
-        await this.view.init();
+
+        await this.view.init(this.lang);
       } else {
         this.view.mode = mode;
       }

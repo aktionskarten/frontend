@@ -2,49 +2,51 @@
 <div>
   <div class="container">
     <div class="my-2">
-      <h2 v-if="isEditable">{{ isNew ? 'Neue Aktionskarte erstellen' : 'Karte bearbeiten'}}</h2>
+      <h2 v-if="isEditable">{{ $t(isNew ? 'form.createMap' : 'form.editMap')}}</h2>
 
       <b-form @submit="onSubmit">
         <b-alert :show="showSavedAlert" variant="success">Gespeichert</b-alert>
         <b-form-group
-            label="Name"
+            :label="$t('form.name.label')"
             label-for="nameInput"
             :invalidFeedback="invalidMinLenFeedback(map.name)"
             :state="validate(map.name)"
-            description="Der Name wird als Überschrift auf deiner Aktionskarte sein."
+            :description="$t('form.name.description')"
             horizontal>
-          <b-form-input id="nameInput" placeholder="Name deiner Karte"
+          <b-form-input id="nameInput" :placeholder="$t('form.name.placeholder')"
             v-model.trim="map.name" :state="validate(map.name)"
             :plaintext="!isEditable"></b-form-input>
         </b-form-group>
 
         <b-form-group
-            label="Ort"
+            :label="$t('form.place.label')"
             label-for="placeInput"
             :invalidFeedback="invalidMinLenFeedback(map.place)"
             :state="validate(map.place)"
-            description="Ein Ort ist notwendig damit die Leute wo deine Aktion stattfindet. Er wird auch auf der Karte unter dem Namen erscheinen."
+            :description="$t('form.name.description')"
             horizontal>
-          <b-form-input id="placeInput" placeholder="Ort wo deine Aktion ist"
+          <b-form-input id="placeInput" :placeholder="$t('form.place.placeholder')"
             v-model.trim="map.place" :state="validate(map.place)"
             :plaintext="!isEditable"></b-form-input>
         </b-form-group>
 
-        <b-form-group label="Kartenausschnitt" horizontal>
+        <b-form-group :label="$t('form.mapExtract.label')" v-if="!isNew" horizontal>
           <b-form-row>
               <b-col v-if="map.bbox">
                 <b-form-input :value="map.bbox" plaintext></b-form-input>
               </b-col>
               <b-col>
-                <b-badge v-if="!isNew && isEditable" :to="bboxLink" >Kartenausschnitt ändern</b-badge>
+                <b-badge v-if="!isNew && isEditable" :to="bboxLink" >
+                  {{$t('form.mapExtract.button')}}
+                </b-badge>
               </b-col>
             </b-form-row>
         </b-form-group>
 
         <b-form-group
-            label="Datum"
+            :label="$t('form.date.label')"
             label-for="dateInput"
-            description="Mit Datum und Zeit wissen Menschen wo sie wann sein müssen. Beides wird auch auf der Karte neben dem Ort erscheinen."
+            :description="$t('form.date.description')"
             horizontal>
           <b-row class="my-1">
             <b-col sm="3">
@@ -57,25 +59,21 @@
         </b-form-group>
 
         <b-form-group
-            label="Beschreibung"
+            :label="$t('form.description.label')"
             label-for="descriptionTextarea"
-            description="Pack hier deinen Aufruf rein. Er wird auf der Rückseite zum Beispiel beim PDF-Export auf der Rückseite der Aktionskarte erscheinen."
+            :description="$t('form.description.description')"
             horizontal>
           <b-form-textarea id="descriptionTextarea"
                            v-model="map.description"
-                           placeholder="Beschreibung deiner Aktion"
+                           :placeholder="$t('form.description.placeholder')"
                            :rows="5" :plaintext="!isEditable">
           </b-form-textarea>
         </b-form-group>
 
         <b-form-group
-          label="Legende"
+          :label="$t('form.legend.label')"
           label-for="attributesInput"
-          description="Hier gespeichert Schlüssel-Werte-Paare sollen dir
-          ermöglichen wichtige Informationen zu hinterlegen. Beispiele sind
-          <i>Twitter-@account</i>, <i>EA-0891234</i> oder
-          <i>Hashtag-#B0803</i>. Diese werden dann auf deiner Aktionskarte
-          hinterlegt."
+          :description="$t('form.legend.description')"
           horizontal>
 
           <dl class="mx-0 row" v-if="!isEditable" v-for="(val,i) in map.attributes">
@@ -92,22 +90,24 @@
             <b-list-group-item>
               <b-row class="my-1">
                 <b-col>
-                  <b-form-input size="sm" placeholder="Schlüssel" class="text-center" v-model="newAttribute.key"></b-form-input>
+                  <b-form-input size="sm" :placeholder="$t('form.legend.placeholderKey')" class="text-center" v-model="newAttribute.key"></b-form-input>
                 </b-col>
                 <b-col>
-                  <b-form-input size="sm" placeholder="Wert" class="text-center" v-model="newAttribute.value"></b-form-input>
+                  <b-form-input size="sm" :placeholder="$t('form.legend.placeholderValue')" class="text-center" v-model="newAttribute.value"></b-form-input>
                 </b-col>
                 <b-col class="d-flex align-items-center">
-                  <b-button @click="addAttribute" size="sm">Hinzufügen</b-button>
+                  <b-button @click="addAttribute" size="sm">{{$t('form.legend.button')}}</b-button>
                 </b-col>
               </b-row>
             </b-list-group-item>
           </b-list-group>
         </b-form-group>
 
-        <b-button v-if="isEditable" :disabled="!isSubmitable" class="float-right mb-5" type="submit" variant="primary"> {{ this.isNew ? 'Karte erstellen' : 'Aktualisieren' }}</b-button>
+        <b-button v-if="isEditable" :disabled="!isSubmitable" class="float-right mb-5" type="submit" variant="primary">
+          {{$t(isNew ? 'form.createMap' : 'form.editMap')}}
+        </b-button>
 
-        <modal-map-new :map="map" :secret="secret" v-if="isEditable && hasBbox" @ok="$router.push(bboxLink)"></modal-map-new>
+        <modal-map-new :map="map" :secret="secret" :lang="lang" v-if="isEditable && hasBbox" @ok="$router.push(bboxLink)"></modal-map-new>
       </b-form>
     </div>
   </div>
@@ -118,7 +118,7 @@
 import ModalMapNew from "@/maps/modals/ModalMapNew.vue"
 
 export default {
-  props: ['api', 'model', 'secret'],
+  props: ['api', 'model', 'secret', 'lang'],
   components: {'modal-map-new': ModalMapNew},
   data () {
     return {
@@ -132,16 +132,18 @@ export default {
     }
   },
   watch: {
-    model () {
-      if (this.model.data) {
-        this.map = this.model.data
-      }
-    }
+    model: 'init'
   },
-  async mounted () {
+  mounted () {
     console.log("MapForm mounted");
+    this.init();
   },
   methods: {
+    init() {
+    if (this.model) {
+      this.map = this.model.data
+    }
+    },
     addAttribute() {
       if (!this.newAttribute.key || !this.newAttribute.value) {
         console.warn("Can't add empty attributes");
@@ -155,9 +157,7 @@ export default {
     },
     removeAttribute(i) {
       let old = this.model.attributes.slice()
-      console.log("remove-before", old)
       old.splice(i, 1)
-      console.log("remove-after", old)
       this.model.attributes = old
     },
     validate (value) {
@@ -174,16 +174,18 @@ export default {
           console.warn("could not save");
           return;
         }
-        let params = {id: map.id, secret: map.secret};
+        // TODO: missing lang
+        let params = {id: map.id, secret: map.secret, lang: this.lang};
         this.$router.push({name: 'map.edit', params: params})
       } else {
-        console.log("pre-save", this.map);
         if (!this.model.save()) {
           console.warn("could not save");
           return;
         }
         this.showSavedAlert = true
-        this.$router.replace({name: 'map.edit', params: {id: this.map.id, secret: this.secret}})
+        // TODO: missing lang
+        let params = {id: this.map.id, secret: this.secret, lang: this.lang}
+        this.$router.replace({name: 'map.edit', params: params})
       }
     },
   },
@@ -198,11 +200,11 @@ export default {
       return !this.isNew && !this.map.bbox
     },
     isSubmitable () {
-      return true //this.validName == null
+      return this.validName == null
     },
     bboxLink() {
-      if (this.map && this.secret) {
-        let params = {name: 'map.bbox', params: {id: this.map.id, secret: this.secret}}
+      if (this.map && this.secret && this.lang) {
+        let params = {name: 'map.bbox', params: {id: this.map.id, secret: this.secret, lang: this.lang}}
         return {name: 'map.bbox', params: params}
       }
     },

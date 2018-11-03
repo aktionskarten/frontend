@@ -1,17 +1,14 @@
 <template>
-  <b-modal id="mapModal" :visible="true" size="lg" :title="'Karte '+this.map.name+' erstellt'" @ok="$emit('ok')" ok-title="Kartenausschnitt auswählen" ok-only>
+  <b-modal id="mapModal" :visible="true" size="lg" :title="$t('form.modal.title', {name:this.map.name})" @ok="$emit('ok')" :ok-title="$t('form.modal.button')" ok-only>
   <div class="container">
     <p>
-      Damit nur du und deine Freunde die Karte bearbeiten können gibt es ein
-      zufallgeneriertes Passwort:
+      {{$t('form.modal.preText')}}
     </p>
 
     <pre class="text-center">{{secret}}</pre>
 
     <p>
-      Nur wer im Besitz des Passworts ist kann die Karte bearbeiten. Deinen
-      Mitstreiter*innen schickst du somit den kompletten Link. Dem Rest nur den
-      den Teil ohne Passwort:
+      {{$t('form.modal.postText')}}
     </p>
 
     <b-input-group :prepend="publicLink">
@@ -24,20 +21,20 @@
 <script>
 export default {
   name: 'navbar',
-  props: ['map', 'secret'],
+  props: ['map', 'secret', 'lang'],
   computed: {
     baseUrl() {
       return window.location.href.split('#')[0]
     },
     adminLink () {
       if (this.map && this.secret) {
-        let rel = {name: 'map', params: {id: this.map.id, secret: this.secret}}
+        let rel = {name: 'map', params: {id: this.map.id, secret: this.secret, lang: this.lang}}
         return  this.$router.resolve(rel).href
       }
     },
     publicLink () {
       if (this.map && this.secret) {
-        let rel = {name: 'map', params: {id: this.map.id}}
+        let rel = {name: 'map', params: {id: this.map.id, lang: this.lang}}
         return this.baseUrl + this.$router.resolve(rel).href + '/'
       }
     },

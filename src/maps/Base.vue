@@ -1,33 +1,40 @@
 <template>
   <div class="w-100 h-100">
-    <navbar>
+    <navbar :lang="lang">
       <template slot="name" v-if="model">{{model.name}}</template>
       <template v-if="model">
         <b-navbar-nav>
           <b-nav-item :to="{name: 'map.edit', params: {id: model.id, secret: secret}}">Meta</b-nav-item>
-          <b-nav-item :to="{name: 'map', params: {id: model.id, secret: secret}}">Karte</b-nav-item>
+          <b-nav-item :to="{name: 'map', params: {id: model.id, secret: secret}}">{{$t('navbar.map')}}</b-nav-item>
         </b-navbar-nav>
+      </template>
 
-        <b-navbar-nav class="ml-auto">
-          <b-nav-item-dropdown text="Share" right>
-            <b-dropdown-item :href="model.exports.pdf">PDF</b-dropdown-item>
-            <b-dropdown-item :href="model.exports.svg">SVG</b-dropdown-item>
-            <b-dropdown-item :href="model.exports.png">PNG</b-dropdown-item>
+      <template slot="navbar" v-if="model">
+        <b-navbar-nav class="ml-auto" v-if="model && model.exports">
+          <b-nav-item-dropdown :text="$t('navbar.share.label')" right>
+            <b-dropdown-item>{{$t('navbar.share.social')}}</b-dropdown-item>
+            <b-dropdown-item>{{$t('navbar.share.html')}}</b-dropdown-item>
+          </b-nav-item-dropdown>
+          </b-nav-item-dropdown>
+          <b-nav-item-dropdown text="Download" right>
+            <b-dropdown-item :href="model.exports.pdf">{{$t('navbar.exportAsPDF')}}</b-dropdown-item>
+            <b-dropdown-item :href="model.exports.svg">{{$t('navbar.exportAsSVG')}}</b-dropdown-item>
+            <b-dropdown-item :href="model.exports.png">{{$t('navbar.exportAsPNG')}}</b-dropdown-item>
           </b-nav-item-dropdown>
 
           <b-nav-form>
             <b-btn  v-if="!model.authenticated" size="sm" variant="primary"  v-b-modal.modalLogin>
-              Login
+              {{$t('navbar.login')}}
             </b-btn>
             <b-btn  v-if="model.authenticated" size="sm" variant="primary"  @click="logout()">
-              Logout
+              {{$t('navbar.logout')}}
             </b-btn>
           </b-nav-form>
         </b-navbar-nav>
       </template>
     </navbar>
 
-    <b-modal id="modalLogin" ref="modal" size="sm" title="Authorisierung" ok-title="Log in" @ok="tryLogin" centered>
+    <b-modal id="modalLogin" ref="modal" size="sm" :title="$t('navbar.authorization')" :ok-title="$t('navbar.login')" @ok="tryLogin" centered>
       <div class="container">
         <b-form @submit.stop.prevent="login">
            <b-form-input id="inputToken" :state="inputSecretState" placeholder="Admin Token" v-model.trim="inputSecret"></b-form-input>
@@ -35,7 +42,7 @@
       </div>
     </b-modal>
 
-    <router-view :api="api" :model="model" :secret="secret"></router-view>
+    <router-view :api="api" :model="model" :secret="secret" :lang="lang"></router-view>
   </div>
 </template>
 
@@ -49,10 +56,11 @@ var api = new Api(process.env.API_ENDPOINT)
 export default {
   name: 'app',
   components: {'navbar': NavBar},
+  props: ['lang'],
   data() {
     return {
       api: api,
-      model: {},
+      model: null,
       secret: null,
       inputSecret: '',
       inputSecretState: null
@@ -85,7 +93,7 @@ export default {
       if (secret) {
         if (await this.model.login(secret)) {
           this.secret = secret;
-          let params = {id: this.model.id, secret: secret};
+          let params = {id: this.model.id, secret: secret, lang: this.lang};
           this.$router.replace({name: this.$route.name, params: params})
           return true;
         }
@@ -94,7 +102,7 @@ export default {
     },
     async fetchData () {
       let id = this.$route.params.id
-      if (!id) {
+      if (!id || (this.model && this.model.id == id)) {
         return;
       }
 
@@ -103,7 +111,7 @@ export default {
       this.model.on('authenticated', (e) => {
         let authenticated = e.value
         if (!authenticated) {
-          let params = {params: {id: this.model.id}};
+          let params = {params: {id: this.model.id, lang: this.lang}};
           this.$router.replace({name: this.$route.name, params: params})
         }
       });
