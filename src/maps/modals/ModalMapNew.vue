@@ -1,5 +1,5 @@
 <template>
-  <b-modal id="mapModal" :visible="true" size="lg" :title="$t('form.modal.title', {name:this.map.name})" @ok="$emit('ok')" :ok-title="$t('form.modal.button')" ok-only>
+  <b-modal :visible="true" size="lg" :title="$t('form.modal.title', {name:this.map.name})" @ok="$emit('ok')" :ok-title="$t('form.modal.button')" ok-only>
   <div class="container">
     <p>
       {{$t('form.modal.preText')}}
