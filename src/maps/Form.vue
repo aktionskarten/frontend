@@ -4,7 +4,7 @@
     <div class="my-2">
       <h2 v-if="isEditable">{{ $t(isNew ? 'form.createMap' : 'form.editMap')}}</h2>
 
-      <b-form @submit="onSubmit">
+      <b-form v-on:submit.prevent="onSubmit">
         <b-alert :show="showSavedAlert" variant="success">Gespeichert</b-alert>
         <b-form-group
             :label="$t('form.name.label')"
