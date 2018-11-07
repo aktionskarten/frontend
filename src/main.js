@@ -50,6 +50,13 @@ const router = new Router({
 
 // apply language for each route
 router.beforeEach((to, from, next) => {
+  // make body 100% height for external maps because they don't have a navbar
+  // and scoped css does not apply for html or body tags
+  if (to.name == 'map.external') {
+    document.body.classList.add('h-100');
+  } else {
+    document.body.classList.remove('h-100');
+  }
   i18next.changeLanguage(to.params.lang);
   next();
 })
