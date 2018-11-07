@@ -115,7 +115,12 @@ export default {
         return;
       }
 
-      this.model = await MapModel.get(api, id)
+      try {
+        this.model = await MapModel.get(api, id)
+      } catch (e) {
+        console.warn(e);
+        return;
+      }
 
       this.model.on('authenticated', (e) => {
         let authenticated = e.value
