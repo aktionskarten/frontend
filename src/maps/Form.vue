@@ -76,13 +76,13 @@
           :description="$t('form.legend.description')"
           horizontal>
 
-          <dl class="mx-0 row" v-if="!isEditable" v-for="(val,i) in map.attributes">
+          <dl class="mx-0 row" v-if="!isEditable" v-for="(val,i) in map.attributes" :key="val[0]-val[1]">
             <dt class="col-2 pl-0">{{val[0]}}</dt>
             <dd class="col-10">{{val[1]}}</dd>
           </dl>
 
           <b-list-group v-if="isEditable">
-            <b-list-group-item v-for="(val,i) in map.attributes"
+            <b-list-group-item v-for="(val,i) in map.attributes" :key="val[0]-val[1]"
               class="d-flex justify-content-between align-items-center">
               {{val[0]}} - {{val[1]}}
                 <b-badge @click="removeAttribute(i)" variant="danger" >×</b-badge>

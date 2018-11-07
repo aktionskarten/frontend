@@ -15,7 +15,7 @@
 
         <div class="row ">
           <b-card-group deck class="m-2">
-            <b-link class="col-4 my-3 p-0" :to="{name:'map', params: {id: map.id}}" v-for="map in maps">
+            <b-link class="col-4 my-3 p-0" :to="{name:'map', params: {id: map.id}}" v-for="map in maps" :key="map.id">
               <b-card
                   :title="map.name"
                   :sub-title="map.datetime + '@' + map.place"
