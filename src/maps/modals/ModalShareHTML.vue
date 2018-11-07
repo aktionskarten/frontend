@@ -27,7 +27,7 @@ export default {
       }
       let rel = {name: 'map.external', params: {id: this.model.id, lang: this.lang}}
       let src = this.$router.resolve(rel).href
-      return '<iframe src="'+this.baseUrl+src+'" " marginheight="0" marginwidth="0" frameBorder="0" width="605" height="429"></iframe>'
+      return '<iframe src="'+this.baseUrl+src+'" marginheight="0" marginwidth="0" frameBorder="0" width="605" height="429"></iframe>'
     },
     baseUrl() {
       return window.location.href.split('#')[0]
