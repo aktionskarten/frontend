@@ -103,10 +103,16 @@
           </b-list-group>
         </b-form-group>
 
-        <b-button v-if="isEditable" :disabled="!isSubmitable" class="float-right mb-5" type="submit" variant="primary">
-          {{$t(isNew ? 'form.createMap' : 'form.editMap')}}
-        </b-button>
+        <div class="float-md-right">
+          <b-button v-if="!isNew" class="my-2" variant="danger" @click="showModalMapDelete = true">
+            {{$t('form.deleteMap')}}
+          </b-button>
+          <b-button v-if="isEditable" :disabled="!isSubmitable" type="submit" variant="primary" class="my-2">
+            {{$t(isNew ? 'form.createMap' : 'form.editMap')}}
+          </b-button>
+        </div>
 
+        <modal-map-delete v-model="showModalMapDelete" :model="model" v-if="model"></modal-map-delete>
         <modal-map-new :map="map" :secret="secret" :lang="lang" v-if="isEditable && hasBbox" @ok="$router.push(bboxLink)"></modal-map-new>
       </b-form>
     </div>
@@ -116,6 +122,7 @@
 
 <script>
 import ModalMapNew from "@/maps/modals/ModalMapNew.vue"
+import ModalMapDelete from "@/maps/modals/ModalMapDelete.vue"
 import {MapModel} from 'aktionskarten.js'
 import {api} from '@/api.js'
 
@@ -127,11 +134,15 @@ let mapDefaults = {
 
 export default {
   props: ['model', 'secret', 'lang'],
-  components: {'modal-map-new': ModalMapNew},
+  components: {
+    'modal-map-new': ModalMapNew,
+    'modal-map-delete': ModalMapDelete
+  },
 
   data () {
     return {
       showSavedAlert: false,
+      showModalMapDelete: false,
       map: mapDefaults,
       newAttribute: {key: '', value: ''}
     }
@@ -212,7 +223,7 @@ export default {
       }
 
       this.updateRoute();
-    },
+    }
   },
   computed: {
     isEditable () {

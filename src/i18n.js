@@ -43,6 +43,9 @@ const i18n = {
       'form': {
         'createMap': 'Create new map',
         'editMap': 'Edit map',
+        'deleteMap': 'Delete map',
+        'deleteText': 'Do you really want delete this map?',
+        'cancel': 'Cancel',
         'name': {
           'label': 'Name',
           'placeholder': 'What is the name?',
@@ -128,6 +131,9 @@ const i18n = {
       'form': {
         'createMap': 'Neue Aktionskarte erstellen',
         'editMap': 'Karte bearbeiten',
+        'deleteMap': 'Karte löschen',
+        'deleteText': 'Willst du wirklich diese Karte löschen?',
+        'cancel': 'Abbrechen',
         'name': {
           'label': 'Name',
           'placeholder': 'Name der Aktion',
