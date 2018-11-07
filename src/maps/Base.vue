@@ -34,8 +34,8 @@
       </template>
     </navbar>
 
-    <modal-share-social v-model="showModalShareSocial" :model="model" :lang="lang"></modal-share-social>
-    <modal-share-html v-model="showModalShareHTML" :model="model" :lang="lang"></modal-share-html>
+    <modal-share-social v-model="showModalShareSocial" :model="model" :lang="lang" v-if="model"></modal-share-social>
+    <modal-share-html v-model="showModalShareHTML" :model="model" :lang="lang" v-if="model"></modal-share-html>
 
     <b-modal id="modalLogin" ref="modalLogin" size="sm" :title="$t('navbar.authorization')" :ok-title="$t('navbar.login')" @ok="tryLogin" centered>
       <div class="container">
