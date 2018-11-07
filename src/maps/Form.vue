@@ -9,24 +9,22 @@
         <b-form-group
             :label="$t('form.name.label')"
             label-for="nameInput"
-            :invalidFeedback="invalidMinLenFeedback(map.name)"
-            :state="validate(map.name)"
+            :invalidFeedback="invalidFeedback.name"
+            :state="invalidFeedback.name"
             :description="$t('form.name.description')"
             horizontal>
           <b-form-input id="nameInput" :placeholder="$t('form.name.placeholder')"
-            v-model.trim="map.name" :state="validate(map.name)"
+            v-model.trim="map.name" :state="(invalidFeedback.name != null) ? false : null"
             :plaintext="!isEditable"></b-form-input>
         </b-form-group>
 
         <b-form-group
             :label="$t('form.place.label')"
             label-for="placeInput"
-            :invalidFeedback="invalidMinLenFeedback(map.place)"
-            :state="validate(map.place)"
             :description="$t('form.name.description')"
             horizontal>
           <b-form-input id="placeInput" :placeholder="$t('form.place.placeholder')"
-            v-model.trim="map.place" :state="validate(map.place)"
+            v-model.trim="map.place"
             :plaintext="!isEditable"></b-form-input>
         </b-form-group>
 
@@ -143,6 +141,7 @@ export default {
     return {
       showSavedAlert: false,
       showModalMapDelete: false,
+      invalidFeedback: {name: null},
       map: mapDefaults,
       newAttribute: {key: '', value: ''}
     }
@@ -197,29 +196,33 @@ export default {
       this.model.attributes = old
     },
 
-    validate (value) {
-      var len = value && value.length;
-      return !len || len >= 4 ? null : false
-    },
-
-    invalidMinLenFeedback (value) {
-      return this.validate(value) ? '' : "Bitte mindestens 4 Buchstaben eingeben"
-    },
-
     async onSubmit() {
-      if (this.isNew) {
-        let map = await api.createMap(this.map)
-        if (!map) {
-          console.warn("could not save");
-          return;
+      try {
+        if (this.isNew) {
+            let map = await api.createMap(this.map)
+            if (!map) {
+              console.warn("could not save");
+              return;
+            }
+            this.map = map;
+        } else {
+          if (!(await this.model.save())) {
+            console.warn("could not save");
+            return;
+          }
+          this.showSavedAlert = true
         }
-        this.map = map;
-      } else {
-        if (!(await this.model.save())) {
-          console.warn("could not save");
-          return;
+      } catch (e) {
+        for (let [k, v] of Object.entries(e)) {
+          this.invalidFeedback[k] = this.$t(v, {keySeparator: null});
         }
-        this.showSavedAlert = true
+
+        return;
+      }
+
+      // reset errors
+      for (let k of Object.keys(this.invalidFeedback)) {
+        this.invalidFeedback[k] = null;
       }
 
       this.updateRoute();

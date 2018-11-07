@@ -171,7 +171,10 @@ const i18n = {
           'postText': 'Nur wer im Besitz des Passworts ist kann die Karte bearbeiten. Deinen Mitstreiter*innen schickst du somit den kompletten Link. Dem Rest nur den den Teil ohne Passwort.',
           'footer': 'Speicher dir das Passwort oder den Link gut ab.',
         }
-      }
+      },
+
+      // Error messages from backend
+      'Map already exists. Use another name!': 'Karte existiert bereits. Wähle einen anderen Namen!'
     },
   },
 }
