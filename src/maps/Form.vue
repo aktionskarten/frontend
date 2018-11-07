@@ -86,17 +86,19 @@
                 <b-badge @click="removeAttribute(i)" variant="danger" >×</b-badge>
             </b-list-group-item>
             <b-list-group-item>
-              <b-row class="my-1">
-                <b-col>
-                  <b-form-input size="sm" :placeholder="$t('form.legend.placeholderKey')" class="text-center" v-model="newAttribute.key"></b-form-input>
-                </b-col>
-                <b-col>
-                  <b-form-input size="sm" :placeholder="$t('form.legend.placeholderValue')" class="text-center" v-model="newAttribute.value"></b-form-input>
-                </b-col>
-                <b-col class="d-flex align-items-center">
-                  <b-button @click="addAttribute" size="sm">{{$t('form.legend.button')}}</b-button>
-                </b-col>
-              </b-row>
+              <b-form v-on:submit.prevent>
+                <b-row class="my-1">
+                  <b-col>
+                    <b-form-input size="sm" :placeholder="$t('form.legend.placeholderKey')" class="text-center" v-model="newAttribute.key"></b-form-input>
+                  </b-col>
+                  <b-col>
+                    <b-form-input size="sm" :placeholder="$t('form.legend.placeholderValue')" class="text-center" v-model="newAttribute.value"></b-form-input>
+                  </b-col>
+                  <b-col class="d-flex align-items-center">
+                    <b-button @click="addAttribute" size="sm">{{$t('form.legend.button')}}</b-button>
+                  </b-col>
+                </b-row>
+              </b-form>
             </b-list-group-item>
           </b-list-group>
         </b-form-group>
