@@ -8,7 +8,7 @@ import {Api, MapModel} from 'aktionskarten.js'
 import {api} from '@/api.js'
 
 export default {
-  props: ['lang'],
+  props: ['lang', 'id'],
   data() {
     return {
       model: null,
@@ -17,19 +17,14 @@ export default {
   },
   watch: {
     '$route': 'render',
-    'model': 'render',
+    'id': 'render',
   },
   mounted () {
     this.render();
   },
   methods: {
     async render () {
-      let id = this.$route.params.id
-      if (!id || (this.model && this.model.id == id)) {
-        return;
-      }
-
-      this.model = await MapModel.get(api, id)
+      this.model = await MapModel.get(api, this.id)
       if (!this.model) {
         console.warn("aborting no model");
         return;

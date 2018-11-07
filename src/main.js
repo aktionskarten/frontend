@@ -43,7 +43,7 @@ const router = new Router({
         { name: "map", path: ':id/map/:secret?', component: MapLeaflet},
       ]
     },
-    { name: "map.external", path: '/:lang/maps/:id/external', component: MapExternal},
+    { name: "map.external", path: '/:lang/maps/:id/external', component: MapExternal, props: true},
     { path: '*', redirect: '/de/home' }
   ]
 })
