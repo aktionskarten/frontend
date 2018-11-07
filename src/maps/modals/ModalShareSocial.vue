@@ -5,7 +5,7 @@
       size="md" :title="$t('navbar.share.social.title')" @ok="$emit('ok')" hide-footer>
   <div class="container">
     <p class="text-center">
-      <b-img v-if="model " :src="model.exports.png + ':small'" class="w-100" alt="Responsive image" />
+      <b-img v-if="model && visible" :src="model.exports.png + ':small'" class="w-100" />
       <b-form-textarea class="m-auto rounded-0 border-top-0" :rows="8" :value="text"></b-form-textarea>
     </p>
   </div>
