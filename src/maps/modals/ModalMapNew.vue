@@ -11,9 +11,15 @@
       {{$t('form.modal.postText')}}
     </p>
 
-    <b-input-group :prepend="publicLink">
-      <b-form-input :value="secret"></b-form-input>
-    </b-input-group>
+    <p>
+      <b-input-group :prepend="publicLink">
+        <b-form-input :value="secret"></b-form-input>
+      </b-input-group>
+    </p>
+
+    <p>
+      {{$t('form.modal.footer')}}
+    </p>
   </div>
 </b-modal>
 </template>
