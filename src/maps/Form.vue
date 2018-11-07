@@ -139,10 +139,24 @@ export default {
     this.init();
   },
   methods: {
-    init() {
-    if (this.model) {
-      this.map = this.model.data
-    }
+    init(map) {
+      if (!(map || this.model)) {
+        return;
+      }
+
+      this.map = map || this.model.data
+
+      if (this.map) {
+        let secret = this.secret || this.map.secret
+        if (secret && this.lang) {
+          let params = {
+            id: map.id,
+            secret: secret,
+            lang: this.lang
+          };
+          this.$router.push({name: 'map.edit', params: params})
+        }
+      }
     },
     addAttribute() {
       if (!this.newAttribute.key || !this.newAttribute.value) {
@@ -168,25 +182,22 @@ export default {
       return this.validate(value) ? '' : "Bitte mindestens 4 Buchstaben eingeben"
     },
     async onSubmit() {
+      let map = this.map;
       if (this.isNew) {
-        let map = await this.api.createMap(this.map)
+        map = await this.api.createMap(this.map)
         if (!map) {
           console.warn("could not save");
           return;
         }
-        // TODO: missing lang
-        let params = {id: map.id, secret: map.secret, lang: this.lang};
-        this.$router.push({name: 'map.edit', params: params})
       } else {
-        if (!this.model.save()) {
+        if (!(await this.model.save())) {
           console.warn("could not save");
           return;
         }
         this.showSavedAlert = true
-        // TODO: missing lang
-        let params = {id: this.map.id, secret: this.secret, lang: this.lang}
-        this.$router.replace({name: 'map.edit', params: params})
       }
+
+      this.init(map);
     },
   },
   computed: {
