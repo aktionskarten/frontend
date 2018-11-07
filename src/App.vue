@@ -18,4 +18,8 @@ html{
 body {
   height: calc(100% - 60px);
 }
+
+.b-nav-dropdown{
+ z-index: 9999
+}
 </style>
