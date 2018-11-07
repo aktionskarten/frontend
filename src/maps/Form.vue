@@ -103,11 +103,11 @@
           </b-list-group>
         </b-form-group>
 
-        <div class="float-md-right">
+        <div class="float-md-right" v-if="isEditable">
           <b-button v-if="!isNew" class="my-2" variant="danger" @click="showModalMapDelete = true">
             {{$t('form.deleteMap')}}
           </b-button>
-          <b-button v-if="isEditable" :disabled="!isSubmitable" type="submit" variant="primary" class="my-2">
+          <b-button :disabled="!isSubmitable" type="submit" variant="primary" class="my-2">
             {{$t(isNew ? 'form.createMap' : 'form.editMap')}}
           </b-button>
         </div>
