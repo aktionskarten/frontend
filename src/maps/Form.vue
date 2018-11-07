@@ -116,49 +116,58 @@
 
 <script>
 import ModalMapNew from "@/maps/modals/ModalMapNew.vue"
+import {MapModel} from 'aktionskarten.js'
 import {api} from '@/api.js'
+
+let mapDefaults = {
+  date: new Date().toISOString().slice(0, 10),
+  time: '14:00',
+  attributes: []
+}
 
 export default {
   props: ['model', 'secret', 'lang'],
   components: {'modal-map-new': ModalMapNew},
+
   data () {
     return {
       showSavedAlert: false,
-      map: {
-        date: new Date().toISOString().slice(0, 10),
-        time: '14:00',
-        attributes: []
-      },
+      map: mapDefaults,
       newAttribute: {key: '', value: ''}
     }
   },
+
   watch: {
     model: 'init'
   },
+
   mounted () {
     console.log("MapForm mounted");
     this.init();
   },
+
   methods: {
-    init(map) {
-      if (!(map || this.model)) {
+    init() {
+      if (this.model) {
+        this.map = this.model.data
+        this.updateRoute();
+      }
+    },
+
+    updateRoute() {
+      if (!this.map.id) {
+        console.warn("can't updateRoute without valid id");
         return;
       }
 
-      this.map = map || this.model.data
-
-      if (this.map) {
-        let secret = this.secret || this.map.secret
-        if (secret && this.lang) {
-          let params = {
-            id: map.id,
-            secret: secret,
-            lang: this.lang
-          };
-          this.$router.push({name: 'map.edit', params: params})
-        }
-      }
+      let params = {
+        id: this.map.id,
+        secret: this.secret || this.map.secret,
+        lang: this.lang
+      };
+      this.$router.push({name: 'map.edit', params: params})
     },
+
     addAttribute() {
       if (!this.newAttribute.key || !this.newAttribute.value) {
         console.warn("Can't add empty attributes");
@@ -170,26 +179,30 @@ export default {
       this.map.attributes = tmp;
       this.newAttribute.key = this.newAttribute.value = ''
     },
+
     removeAttribute(i) {
       let old = this.model.attributes.slice()
       old.splice(i, 1)
       this.model.attributes = old
     },
+
     validate (value) {
       var len = value && value.length;
       return !len || len >= 4 ? null : false
     },
+
     invalidMinLenFeedback (value) {
       return this.validate(value) ? '' : "Bitte mindestens 4 Buchstaben eingeben"
     },
+
     async onSubmit() {
-      let map = this.map;
       if (this.isNew) {
-        map = await this.api.createMap(this.map)
+        let map = await api.createMap(this.map)
         if (!map) {
           console.warn("could not save");
           return;
         }
+        this.map = map;
       } else {
         if (!(await this.model.save())) {
           console.warn("could not save");
@@ -198,7 +211,7 @@ export default {
         this.showSavedAlert = true
       }
 
-      this.init(map);
+      this.updateRoute();
     },
   },
   computed: {
