@@ -42,10 +42,12 @@ const i18n = {
       },
       'form': {
         'createMap': 'Create new map',
-        'editMap': 'Edit map',
+        'editMapTitle': 'Edit map',
+        'editMap': 'Save',
         'deleteMap': 'Delete map',
         'deleteText': 'Do you really want delete this map?',
         'cancel': 'Cancel',
+        'saved': 'Saved',
         'name': {
           'label': 'Name',
           'placeholder': 'What is the name?',
@@ -130,10 +132,12 @@ const i18n = {
       },
       'form': {
         'createMap': 'Neue Aktionskarte erstellen',
-        'editMap': 'Karte bearbeiten',
+        'editMapTitle': 'Karte bearbeiten',
+        'editMap': 'Speichern',
         'deleteMap': 'Karte löschen',
         'deleteText': 'Willst du wirklich diese Karte löschen?',
         'cancel': 'Abbrechen',
+        'saved': 'Gespeichert',
         'name': {
           'label': 'Name',
           'placeholder': 'Name der Aktion',

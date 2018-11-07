@@ -2,10 +2,11 @@
 <div>
   <div class="container">
     <div class="my-2">
-      <h2 v-if="isEditable">{{ $t(isNew ? 'form.createMap' : 'form.editMap')}}</h2>
+      <h2 v-if="isEditable">{{ $t(isNew ? 'form.createMap' : 'form.editMapTitle')}}</h2>
 
       <b-form v-on:submit.prevent="onSubmit">
-        <b-alert :show="showSavedAlert" variant="success">Gespeichert</b-alert>
+        <b-alert :show="invalidFeedback.general" dismissible fade variant="danger">{{invalidFeedback.general}}</b-alert>
+        <b-alert :show="showAlert" @dismissed="showAlert=false"variant="success">{{$t('form.saved')}}</b-alert>
         <b-form-group
             :label="$t('form.name.label')"
             label-for="nameInput"
@@ -74,13 +75,13 @@
           :description="$t('form.legend.description')"
           horizontal>
 
-          <dl class="mx-0 row" v-if="!isEditable" v-for="(val,i) in map.attributes" :key="val[0]-val[1]">
+          <dl class="mx-0 row" v-if="!isEditable" v-for="(val,i) in map.attributes" :key="val[0]+'-'+val[1]">
             <dt class="col-2 pl-0">{{val[0]}}</dt>
             <dd class="col-10">{{val[1]}}</dd>
           </dl>
 
           <b-list-group v-if="isEditable">
-            <b-list-group-item v-for="(val,i) in map.attributes" :key="val[0]-val[1]"
+            <b-list-group-item v-for="(val,i) in map.attributes" :key="val[0]+'-'+val[1]"
               class="d-flex justify-content-between align-items-center">
               {{val[0]}} - {{val[1]}}
                 <b-badge @click="removeAttribute(i)" variant="danger" >×</b-badge>
@@ -104,10 +105,10 @@
         </b-form-group>
 
         <div class="float-md-right" v-if="isEditable">
-          <b-button v-if="!isNew" class="my-2" variant="danger" @click="showModalMapDelete = true">
+          <b-button :disabled="busy" v-if="!isNew" class="my-2" variant="danger" @click="showModalMapDelete = true">
             {{$t('form.deleteMap')}}
           </b-button>
-          <b-button :disabled="!isSubmitable" type="submit" variant="primary" class="my-2">
+          <b-button :disabled="busy" type="submit" variant="primary" class="my-2">
             {{$t(isNew ? 'form.createMap' : 'form.editMap')}}
           </b-button>
         </div>
@@ -141,7 +142,8 @@ export default {
 
   data () {
     return {
-      showSavedAlert: false,
+      busy: false,
+      showAlert: false,
       showModalMapDelete: false,
       invalidFeedback: {name: null},
       map: mapDefaults,
@@ -199,26 +201,31 @@ export default {
     },
 
     async onSubmit() {
+      if (this.busy) {
+        console.warn("already busy");
+        return;
+      }
       try {
+        this.busy = true;
         if (this.isNew) {
-            let map = await api.createMap(this.map)
-            if (!map) {
-              console.warn("could not save");
-              return;
-            }
-            this.map = map;
-        } else {
-          if (!(await this.model.save())) {
-            console.warn("could not save");
-            return;
+          let map = await api.createMap(this.map)
+          if (!map) {
+            throw {'general': 'Could not create map.'}
           }
-          this.showSavedAlert = true
+          this.map = map;
+        } else {
+          let map = await this.model.save()
+          if (!map) {
+            throw {'general': 'Could not update map.'}
+          }
+          this.showAlert = 2
         }
       } catch (e) {
         for (let [k, v] of Object.entries(e)) {
           this.invalidFeedback[k] = this.$t(v, {keySeparator: null});
         }
-
+        this.busy = false;
+        window.scrollTo(0, 0)
         return;
       }
 
@@ -227,6 +234,8 @@ export default {
         this.invalidFeedback[k] = null;
       }
 
+      this.busy = false;
+      window.scrollTo(0, 0)
       this.updateRoute();
     }
   },
@@ -239,9 +248,6 @@ export default {
     },
     hasBbox () {
       return !this.isNew && !this.map.bbox
-    },
-    isSubmitable () {
-      return this.validName == null
     },
     bboxLink() {
       if (this.map && this.secret && this.lang) {
