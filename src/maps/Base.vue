@@ -84,9 +84,6 @@ export default {
   },
   watch: {
     '$route': 'fetchData',
-    'showModalShareHTML': function() {
-      console.log("showModalShareHTML", this.showModalShareHTML)
-    }
   },
   methods: {
     async tryLogin(evt) {
