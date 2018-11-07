@@ -6,9 +6,10 @@
 
 <script>
 import {View} from 'aktionskarten.js'
+import {api} from '@/api.js'
 
 export default {
-  props: ['api', 'model', 'secret', 'lang'],
+  props: ['model', 'secret', 'lang'],
   data() {
     return {
       view: null,

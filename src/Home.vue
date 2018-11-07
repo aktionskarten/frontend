@@ -38,10 +38,7 @@
 <script>
 
 import NavBar from '@/NavBar.vue'
-import {Api} from 'aktionskarten.js'
-
-console.log(process.env)
-var api = new Api(process.env.API_ENDPOINT)
+import {api} from '@/api.js'
 
 export default {
   name: 'home',

@@ -45,7 +45,7 @@
       </div>
     </b-modal>
 
-    <router-view :api="api" :model="model" :secret="secret" :lang="lang"></router-view>
+    <router-view :model="model" :secret="secret" :lang="lang"></router-view>
   </div>
 </template>
 
@@ -54,10 +54,8 @@ import NavBar from '@/NavBar.vue'
 import ModalShareSocial from "@/maps/modals/ModalShareSocial.vue"
 import ModalShareHTML from "@/maps/modals/ModalShareHTML.vue"
 
-import {Api, MapModel} from 'aktionskarten.js'
-
-//var api = new Api('https://staging.aktionskarten.org') //process.env.API_ENDPOINT)
-var api = new Api(process.env.API_ENDPOINT)
+import {MapModel} from 'aktionskarten.js'
+import {api} from '@/api.js'
 
 export default {
   name: 'app',
@@ -69,7 +67,6 @@ export default {
   props: ['lang'],
   data() {
     return {
-      api: api,
       model: null,
       secret: null,
       inputSecret: '',

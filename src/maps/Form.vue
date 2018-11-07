@@ -116,9 +116,10 @@
 
 <script>
 import ModalMapNew from "@/maps/modals/ModalMapNew.vue"
+import {api} from '@/api.js'
 
 export default {
-  props: ['api', 'model', 'secret', 'lang'],
+  props: ['model', 'secret', 'lang'],
   components: {'modal-map-new': ModalMapNew},
   data () {
     return {

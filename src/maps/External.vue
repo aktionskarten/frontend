@@ -5,15 +5,12 @@
 <script>
 import {View} from 'aktionskarten.js'
 import {Api, MapModel} from 'aktionskarten.js'
-
-//var api = new Api('https://staging.aktionskarten.org') //process.env.API_ENDPOINT)
-var api = new Api(process.env.API_ENDPOINT)
+import {api} from '@/api.js'
 
 export default {
   props: ['lang'],
   data() {
     return {
-      api: api,
       model: null,
       view: null,
     }
