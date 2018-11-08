@@ -3,8 +3,43 @@
   <head>
     <meta charset="utf-8">
     <title>frontend</title>
+    <style>
+    .spinner {
+      display: block;
+      pointer-events: none;
+      width: 2.5em;
+      height: 2.5em;
+      border: 0.4em solid transparent;
+      border-color: #eee;
+      border-top-color: #3E67EC;
+      border-radius: 50%;
+      animation: spinner 1s linear infinite;
+      margin: auto;
+    }
+
+    @keyframes spinner {
+      100% {
+          transform: rotate(360deg)
+      }
+    }
+
+    .container-spinner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    html, body, #app, .container-spinner {
+      height: 100%;
+    }
+    </style>
   </head>
   <body>
-    <div id="app"></div>
+    <div id="app">
+      <div class="container-spinner">
+        <div class="spinner"> </div>
+      </div>
+    </div>
   </body>
 </html>
