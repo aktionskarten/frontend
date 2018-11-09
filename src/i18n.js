@@ -148,7 +148,7 @@ const i18n = {
       },
       'sources': {
         'headline': 'Quelltexte',
-        'description': 'All Komponenten von Aktionskarten sind freie Software. Du kannst sie hier finden:'
+        'description': 'Alle Komponenten von Aktionskarten sind freie Software. Du kannst sie hier finden:'
       },
       'form': {
         'createMap': 'Neue Aktionskarte erstellen',
