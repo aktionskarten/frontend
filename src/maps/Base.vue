@@ -6,7 +6,7 @@
         <b-navbar-nav>
           <b-nav-item :to="{name: 'map.edit', params: {id: model.id, secret: secret}}">{{$t('navbar.form')}}</b-nav-item>
           <b-nav-item :to="{name: 'map', params: {id: model.id, secret: secret}}">{{$t('navbar.map')}}</b-nav-item>
-          <b-nav-item :to="{name: 'map.preview', params: {id: model.id, secret: secret}}">{{$t('navbar.preview')}}</b-nav-item>
+          <b-nav-item v-if="model.authenticated" :to="{name: 'map.preview', params: {id: model.id, secret: secret}}">{{$t('navbar.preview')}}</b-nav-item>
         </b-navbar-nav>
       </template>
 
