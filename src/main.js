@@ -18,6 +18,7 @@ import MapBase from './maps/Base.vue'
 import MapForm from './maps/Form.vue'
 import MapLeaflet from './maps/Leaflet.vue'
 import MapExternal from './maps/External.vue'
+import MapPreview from './maps/Preview.vue'
 
 Vue.use(Router)
 Vue.use(BootstrapVue)
@@ -40,6 +41,7 @@ const router = new Router({
         { name: "map.new", path: 'new', component: MapForm},
         { name: "map.edit", path: ':id/edit/:secret?', component: MapForm},
         { name: "map.bbox", path: ':id/bbox/:secret', component: MapLeaflet},
+        { name: "map.preview", path: ':id/preview/:secret?', component: MapPreview},
         { name: "map", path: ':id/map/:secret?', component: MapLeaflet},
       ]
     },
