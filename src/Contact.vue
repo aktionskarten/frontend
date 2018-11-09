@@ -18,8 +18,9 @@
         {{$t('sources.description')}}
       </p>
       <ul>
-        <li><a href="https://github.com/aktionskarten/frontend">frontend</a></li>
-        <li><a href="https://github.com/aktionskarten/backend">backend</a></li>
+        <li><a href="https://github.com/aktionskarten/frontend">aktionskarten/frontend</a></li>
+        <li><a href="https://github.com/aktionskarten/aktionskarten.js">aktionskarten/aktionskarten.js</a></li>
+        <li><a href="https://github.com/aktionskarten/backend">aktionskarten/backend</a></li>
         <li><a href="https://vuejs.org/">vuejs</a></li>
         <li><a href="https://leafletjs.com/">leaflet</a></li>
         <li><a href="https://mapnik.org/">mapnik</a></li>
