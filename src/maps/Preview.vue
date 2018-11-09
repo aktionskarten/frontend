@@ -14,19 +14,24 @@ export default {
   data() {
     return {
       loaded: false,
+      src: null
     }
   },
   watch: {
-    src() {
-      this.loaded = false;
-    }
+    'model': 'init'
   },
-  computed: {
-    src () {
-      if (this.model) {
-        // svg seems too ressource intensive for clients
-        return this.model.exports.png;
+  mounted() {
+    this.init();
+  },
+  methods: {
+    init() {
+      if (!this.model) {
+        return;
       }
+
+      // svg seems too ressource intensive for clients
+      this.loaded = false;
+      this.src = this.model.exports.png + '?' + this.model.data.hash
     }
   },
 }
