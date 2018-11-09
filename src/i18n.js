@@ -42,6 +42,14 @@ const i18n = {
         'preGPG': 'If possible then encrypt your mail. Our PGP key can be found <a href="{{gpgLink}}">here</a>  or just get it from a public key server.',
         'postGPG': 'You can as well download the key with your mail client. Pay attention that the <i>fingerprint</i> is the same as above.',
       },
+      'remark': {
+        'headline': 'Remark',
+        'description': 'Aktionskarten is inspired by the work of <a href="https://aktionskarten.noblogs.org/">Kartographische Aktion</a>. They provide maps for example for demonstrations. Furthermore they wrote a tutorial how you can make maps on your own. Our idea was to simplify this further. The icon set which we use is from them.'
+      },
+      'sources': {
+        'headline': 'Sources',
+        'description': 'All components of Aktionskarten are open source. You can find them here:',
+      },
       'form': {
         'createMap': 'Create new map',
         'editMapTitle': 'Edit map',
@@ -133,6 +141,14 @@ const i18n = {
         'introduction': 'Ihr habt Anmerkungen, Fragen oder wollt mit uns in Kontakt treten? Schreibt uns einfach eine Mail',
         'preGPG': 'Wenn möglich dann am besten verschlüsselt. Unser PGP Schlüssel findet ihr <a href="{{gpgLink}}">hier</a> oder ladet ihn von einem öffentlichen Schlüsselserver runter.',
         'postGPG': 'Ihr könnt ihn natürlich auch über euren Mailclient runterladen. Achtet dabei dass der <i>Fingerprint</i> dem obigen entspricht.',
+      },
+      'remark': {
+        'headline': 'Anmerkungen',
+        'description': 'Aktionskarten basiert auf Ideen und Arbeit von <a href="https://aktionskarten.noblogs.org/">Kartographische Aktion</a>. Sie stellen Karten zum Beispiel für Demonstrationen zur Verfügung und haben auch eine Anleitung verfasst wie du selbst solche Karten erstellen kannst. Unsere Idee war dies noch weiter zu vereinfachen. Die von uns verwendeten Bilder der Marker sind u.a. von ihnen.'
+      },
+      'sources': {
+        'headline': 'Quelltexte',
+        'description': 'All Komponenten von Aktionskarten sind freie Software. Du kannst sie hier finden:'
       },
       'form': {
         'createMap': 'Neue Aktionskarte erstellen',
