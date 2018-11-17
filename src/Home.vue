@@ -8,9 +8,6 @@
         </h1>
         <p class="lead">
           {{$t('home.description')}}
-          <br />
-          <br />
-          {{$t('home.mapListing')}}
         </p>
 
         <div class="row ">
