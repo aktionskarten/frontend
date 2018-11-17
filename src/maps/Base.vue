@@ -37,6 +37,7 @@
 
     <modal-share-social v-model="showModalShareSocial" :model="model" :lang="lang" v-if="model"></modal-share-social>
     <modal-share-html v-model="showModalShareHTML" :model="model" :lang="lang" v-if="model"></modal-share-html>
+    <modal-disconnected :visible="showModalDisconnected" :model="model" :lang="lang" v-if="model"></modal-disconnected>
 
     <b-modal id="modalLogin" ref="modalLogin" size="sm" :title="$t('navbar.authorization')" :ok-title="$t('navbar.login')" @ok="tryLogin" centered>
       <div class="container">
@@ -54,6 +55,7 @@
 import NavBar from '@/NavBar.vue'
 import ModalShareSocial from "@/maps/modals/ModalShareSocial.vue"
 import ModalShareHTML from "@/maps/modals/ModalShareHTML.vue"
+import ModalDisconnected from "@/maps/modals/ModalDisconnected.vue"
 
 import {MapModel} from 'aktionskarten.js'
 import {api} from '@/api.js'
@@ -64,6 +66,7 @@ export default {
     'navbar': NavBar,
     'modal-share-html': ModalShareHTML,
     'modal-share-social': ModalShareSocial,
+    'modal-disconnected': ModalDisconnected,
   },
   props: ['lang'],
   data() {
@@ -74,6 +77,7 @@ export default {
       inputSecretState: null,
       showModalShareSocial: false,
       showModalShareHTML: false,
+      showModalDisconnected: false,
     }
   },
   async mounted () {
@@ -116,12 +120,16 @@ export default {
         return;
       }
 
-      try {
-        this.model = await MapModel.get(api, id)
-      } catch (e) {
-        console.warn(e);
-        return;
-      }
+
+      this.model = await MapModel.get(api, id)
+
+      this.model.on('disconnect', (e) => {
+        this.showModalDisconnected = true;
+      });
+
+      this.model.on('connect', (e) => {
+        this.showModalDisconnected = false;
+      });
 
       this.model.on('authenticated', (e) => {
         let authenticated = e.value
