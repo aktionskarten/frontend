@@ -25,13 +25,6 @@
       </b-nav-item-dropdown>
 
       <slot name="navbar">
-        <b-nav-form v-if="$route.name != 'map.new'">
-          <router-link :to="{name: 'map.new', params: {lang: lang}}">
-            <b-button variant="primary">
-              {{$t("navbar.newMap")}}
-            </b-button>
-          </router-link>
-        </b-nav-form>
       </slot>
     </b-navbar-nav>
   </b-collapse>
