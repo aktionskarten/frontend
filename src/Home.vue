@@ -6,22 +6,13 @@
         <h1 class="display-3 d-none d-md-block text-center">
           {{$t('home.headline')}}
         </h1>
-        <p class="lead">
+        <p class="lead my-5">
           {{$t('home.description')}}
         </p>
 
-        <div class="my-5">
-          <div v-if="loading" class="container-spinner py-5">
-            <div class="spinner"> </div>
-            <p class="text-center mt-4">
-            {{$t('Loading')}}
-            </p>
-          </div>
-        </div>
-
-        <b-card-group deck class="m-2">
-          <div class="row row-eq-height">
-            <b-link class="col-md-4 my-2" :to="{name:'map.new'}">
+        <b-card-group deck class="my-4">
+          <div class="row row-eq-height w-100">
+            <b-link class="col-md-4 my-2" :to="{name:'map.new'}" style="min-height: 40vh">
               <div class="card h-100 text-center pt-1">
                 <div class="circle rounded-circle bg-primary mt-4 mx-auto">
                   <div class="content">
@@ -33,6 +24,16 @@
                 </h4>
               </div>
             </b-link>
+
+            <div class="col-md-4" v-if="loading">
+              <div class="container-spinner py-5">
+                <div class="spinner"> </div>
+                <p class="text-center mt-4">
+                {{$t('Loading maps')}}
+                </p>
+              </div>
+            </div>
+
             <b-link class="col-12 col-md-4 my-2" :to="{name:'map', params: {id: map.id}}" v-for="map in maps" :key="map.id">
               <b-card
                   :title="map.name"
