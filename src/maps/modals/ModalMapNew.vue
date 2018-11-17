@@ -2,24 +2,33 @@
   <b-modal :visible="true" size="lg" :title="$t('form.modal.title', {name:this.map.name})" @ok="$emit('ok')" :ok-title="$t('form.modal.button')" ok-only>
   <div class="container">
     <p>
-      {{$t('form.modal.preText')}}
+      {{$t('form.modal.introduction')}}
     </p>
 
     <pre class="text-center">{{secret}}</pre>
 
-    <p>
-      {{$t('form.modal.postText')}}
+    <p class="text-center my-4">
+      {{$t('form.modal.adminLinkText')}}
     </p>
 
-    <p>
-      <b-input-group :prepend="publicLink">
-        <b-form-input :value="secret"></b-form-input>
-      </b-input-group>
+    <b-form-group
+        :label="$t('form.modal.adminLink')" label-text-align="center"
+        label-for="adminLink" label-class="modal-new-label"
+        horizontal>
+      <b-form-input id="adminLink" :value="adminLink"></b-form-input>
+    </b-form-group>
+
+    <p class="text-center mt-5 mb-4">
+      {{$t('form.modal.publicLinkText')}}
     </p>
 
-    <p>
-      {{$t('form.modal.footer')}}
-    </p>
+    <b-form-group
+        :label="$t('form.modal.publicLink')" label-text-align="center"
+        label-for="adminLink" label-class="modal-new-label"
+        horizontal>
+      <b-form-input id="adminLink" :value="publicLink"></b-form-input>
+    </b-form-group>
+
   </div>
 </b-modal>
 </template>
@@ -35,7 +44,7 @@ export default {
     adminLink () {
       if (this.map && this.secret) {
         let rel = {name: 'map', params: {id: this.map.id, secret: this.secret, lang: this.lang}}
-        return  this.$router.resolve(rel).href
+        return this.baseUrl + this.$router.resolve(rel).href
       }
     },
     publicLink () {
@@ -47,3 +56,10 @@ export default {
   }
 }
 </script>
+
+
+<style>
+.modal-new-label {
+  font-weight: bold;
+}
+</style>
