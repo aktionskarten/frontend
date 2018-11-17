@@ -2,7 +2,10 @@
 <div>
   <div class="container">
     <div class="my-2">
-      <h2 v-if="isEditable">{{ $t(isNew ? 'form.createMap' : 'form.editMapTitle')}}</h2>
+      <h2 class="text-center mt-4" v-if="isEditable">{{ $t(isNew ? 'form.createMap' : 'form.editMapTitle')}}</h2>
+      <h2 class="text-center mt-4" v-else="isEditable">{{ $t('form.title')}}</h2>
+
+      <navsteps :model="model" :secret="secret" :lang="lang"></navsteps>
 
       <b-form v-on:submit.prevent="onSubmit">
         <b-alert :show="invalidFeedback.general" dismissible fade variant="danger">{{invalidFeedback.general}}</b-alert>
@@ -30,16 +33,7 @@
         </b-form-group>
 
         <b-form-group :label="$t('form.mapExtract.label')" v-if="!isNew" horizontal>
-          <b-form-row>
-              <b-col v-if="map.bbox">
-                <b-form-input :value="map.bbox" plaintext></b-form-input>
-              </b-col>
-              <b-col>
-                <b-badge v-if="!isNew && isEditable" :to="bboxLink" >
-                  {{$t('form.mapExtract.button')}}
-                </b-badge>
-              </b-col>
-            </b-form-row>
+          <b-form-input :value="map.bbox" plaintext></b-form-input>
         </b-form-group>
 
         <b-form-group
@@ -122,6 +116,7 @@
 </template>
 
 <script>
+import NavSteps from '@/maps/NavSteps.vue'
 import ModalMapNew from "@/maps/modals/ModalMapNew.vue"
 import ModalMapDelete from "@/maps/modals/ModalMapDelete.vue"
 import {MapModel} from 'aktionskarten.js'
@@ -136,6 +131,7 @@ let mapDefaults = {
 export default {
   props: ['model', 'secret', 'lang'],
   components: {
+    'navsteps': NavSteps,
     'modal-map-new': ModalMapNew,
     'modal-map-delete': ModalMapDelete
   },

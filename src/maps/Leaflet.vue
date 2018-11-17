@@ -1,15 +1,18 @@
-<!-- Map alone is a reserverd keyword therefor we use MapMap as name -->
-
 <template>
+<div class="w-100 h-100">
   <div id="map" class="w-100 h-100" v-pre></div>
+  <navsteps :model="model" :absolute="true" :secret="secret" :lang="lang"></navsteps>
+</div>
 </template>
 
 <script>
 import {View} from 'aktionskarten.js'
 import {api} from '@/api.js'
+import NavSteps from '@/maps/NavSteps.vue'
 
 export default {
   props: ['model', 'secret', 'lang'],
+  components: {'navsteps': NavSteps},
   data() {
     return {
       view: null,
@@ -35,7 +38,9 @@ export default {
       if (!this.view) {
         this.view = new View('map', this.model, mode)
         this.view.on('modeChanged', e => {
-          console.log("changing to mode=",e.value);
+
+          console.log("changing to mode=" + e.value, e);
+
           let params = {id: this.model.id, secret: this.secret, lang: this.lang};
           let name = e.value == 'bbox' ? 'map.bbox' : 'map';
           this.$router.push({name: name, params: params})

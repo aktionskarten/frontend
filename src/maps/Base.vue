@@ -3,26 +3,16 @@
     <navbar :lang="lang">
       <template slot="name" v-if="model">{{model.name}}</template>
       <template v-if="model">
-        <b-navbar-nav>
+        <b-navbar-nav class="d-lg-none">
           <b-nav-item :to="{name: 'map.edit', params: {id: model.id, secret: secret}}">{{$t('navbar.form')}}</b-nav-item>
+          <b-nav-item v-if="model.authenticated && secret" :to="{name: 'map.bbox', params: {id: model.id, secret: secret}}">{{$t('navbar.bbox')}}</b-nav-item>
           <b-nav-item :to="{name: 'map', params: {id: model.id, secret: secret}}">{{$t('navbar.map')}}</b-nav-item>
-          <b-nav-item v-if="model.authenticated" :to="{name: 'map.preview', params: {id: model.id, secret: secret}}">{{$t('navbar.preview')}}</b-nav-item>
+          <b-nav-item v-if="model.authenticated && secret" :to="{name: 'map.preview', params: {id: model.id, secret: secret}}">{{$t('navbar.preview')}}</b-nav-item>
         </b-navbar-nav>
       </template>
 
       <template slot="navbar" v-if="model">
-        <b-navbar-nav class="ml-auto" v-if="model && model.exports">
-          <b-nav-item-dropdown :text="$t('navbar.share.label')" right>
-            <b-dropdown-item @click="showModalShareSocial=true">{{$t('navbar.share.social.link')}}</b-dropdown-item>
-            <b-dropdown-item @click="showModalShareHTML=true">{{$t('navbar.share.html.link')}}</b-dropdown-item>
-          </b-nav-item-dropdown>
-          </b-nav-item-dropdown>
-          <b-nav-item-dropdown text="Download" right>
-            <b-dropdown-item :href="model.exports.pdf">{{$t('navbar.exportAsPDF')}}</b-dropdown-item>
-            <b-dropdown-item :href="model.exports.svg">{{$t('navbar.exportAsSVG')}}</b-dropdown-item>
-            <b-dropdown-item :href="model.exports.png">{{$t('navbar.exportAsPNG')}}</b-dropdown-item>
-          </b-nav-item-dropdown>
-
+        <b-navbar-nav class="ml-md-auto" v-if="model && model.exports">
           <b-nav-form>
             <b-btn  v-if="!model.authenticated" size="sm" variant="primary"  v-b-modal.modalLogin>
               {{$t('navbar.login')}}
@@ -35,8 +25,6 @@
       </template>
     </navbar>
 
-    <modal-share-social v-model="showModalShareSocial" :model="model" :lang="lang" v-if="model"></modal-share-social>
-    <modal-share-html v-model="showModalShareHTML" :model="model" :lang="lang" v-if="model"></modal-share-html>
     <modal-disconnected :visible="showModalDisconnected" :model="model" :lang="lang" v-if="model"></modal-disconnected>
 
     <b-modal id="modalLogin" ref="modalLogin" size="sm" :title="$t('navbar.authorization')" :ok-title="$t('navbar.login')" @ok="tryLogin" centered>
@@ -54,8 +42,6 @@
 
 <script>
 import NavBar from '@/NavBar.vue'
-import ModalShareSocial from "@/maps/modals/ModalShareSocial.vue"
-import ModalShareHTML from "@/maps/modals/ModalShareHTML.vue"
 import ModalDisconnected from "@/maps/modals/ModalDisconnected.vue"
 
 import {MapModel} from 'aktionskarten.js'
@@ -65,8 +51,6 @@ export default {
   name: 'app',
   components: {
     'navbar': NavBar,
-    'modal-share-html': ModalShareHTML,
-    'modal-share-social': ModalShareSocial,
     'modal-disconnected': ModalDisconnected,
   },
   props: ['lang'],
@@ -77,8 +61,6 @@ export default {
       inputSecretMsg: '',
       inputSecret: '',
       inputSecretState: null,
-      showModalShareSocial: false,
-      showModalShareHTML: false,
       showModalDisconnected: false,
     }
   },
