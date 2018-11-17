@@ -8,19 +8,19 @@
           {{$t('navsteps.form')}}
         </b-link>
       </h5>
-      <div class="col d-none d-lg-block" v-if="model.authenticated"><hr></div>
-      <h5 class="col-12 col-lg-auto mb-0" v-if="model.authenticated">
-        <b-link :to="model && {name: 'map.bbox', params: {id: model.id, secret: secret, lang: lang}}" :disabled="!model || !model.bbox">
+      <div class="col d-none d-lg-block" v-if="model && model.authenticated"><hr></div>
+      <h5 class="col-12 col-lg-auto mb-0" v-if="model && model.authenticated">
+        <b-link :to="model && {name: 'map.bbox', params: {id: model.id, secret: secret, lang: lang}}" :disabled="!model">
           <span class="badge mx-2" v-bind:class="[$route.name == 'map.bbox' ? 'badge-primary' : 'badge-secondary']"></span>
           {{$t('navsteps.bbox')}}
         </b-link>
       </h5>
       <div class="col d-none d-lg-block"><hr></div>
       <h5 class="col-12 col-lg-auto mb-0">
-        <b-link id="popoverMap" :to="model && {name: 'map', params: {id: model.id, secret: secret, lang: lang}}" :disabled="!model || !model.bbox">
+        <b-link id="popoverMap" :to="model && {name: 'map', params: {id: model.id, secret: secret, lang: lang}}" :disabled="!model || !!!model.bbox">
           <span class="badge mx-2" v-bind:class="[$route.name == 'map' ? 'badge-primary' : 'badge-secondary']"></span>
-          {{$t('navsteps.map.' + (model.authenticated ? 'edit' : 'static') )}}
-          <b-popover :show="$route.name == 'map' && model.authenticated"  ref="popover" target="popoverMap" placement="top" class="align-center">
+          {{$t('navsteps.map.' + (model && model.authenticated ? 'edit' : 'static') )}}
+          <b-popover :show="$route.name == 'map' && model && model.authenticated"  ref="popover" target="popoverMap" placement="top" class="align-center">
             <b-btn @click="$refs.popover.$emit('close')" class="close" aria-label="Close">
               <span class="d-inline-block" aria-hidden="true">&times;</span>
             </b-btn>
@@ -30,7 +30,7 @@
       </h5>
       <div class="col d-none d-lg-block"><hr></div>
       <h5 class="col-12 col-lg-auto mb-0">
-        <b-link :to="model && {name: 'map.preview', params: {id: model.id, secret: secret, lang: lang}}" :disabled="!model || !model.bbox">
+        <b-link :to="model && {name: 'map.preview', params: {id: model.id, secret: secret, lang: lang}}" :disabled="!model || !!!model.bbox">
           <span class="badge mx-2" v-bind:class="[$route.name == 'map.preview' ? 'badge-primary' : 'badge-secondary']"> </span>
           {{$t('navsteps.preview')}}
         </b-link>
