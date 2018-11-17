@@ -41,6 +41,7 @@
 
     <b-modal id="modalLogin" ref="modalLogin" size="sm" :title="$t('navbar.authorization')" :ok-title="$t('navbar.login')" @ok="tryLogin" centered>
       <div class="container">
+        <p v-if="inputSecretMsg" class="text-danger">{{inputSecretMsg}}</p>
         <b-form @submit.stop.prevent="login">
            <b-form-input id="inputToken" :state="inputSecretState" placeholder="Admin Token" v-model.trim="inputSecret"></b-form-input>
         </b-form>
@@ -73,6 +74,7 @@ export default {
     return {
       model: null,
       secret: null,
+      inputSecretMsg: '',
       inputSecret: '',
       inputSecretState: null,
       showModalShareSocial: false,
@@ -93,9 +95,11 @@ export default {
       if (await this.login(this.inputSecret)) {
         this.inputSecret = ''
         this.inputSecretState = null;
+        this.inputSecretMsg = ''
         this.$refs.modalLogin.hide()
       } else {
         console.warn("login failed");
+        this.inputSecretMsg = 'Invalid token. Login failed.'
         this.inputSecretState = false;
       }
     },
@@ -120,6 +124,16 @@ export default {
         return;
       }
 
+      // generic error handler
+      api.errorHandler = (error) => {
+        if (error == 'UNAUTHORIZED') {
+          this.inputSecretMsg = 'Your token timed out.'
+          this.inputSecret = this.secret;
+          this.$refs.modalLogin.show()
+        } else {
+          this.$router.push({name: 'home', params: {lang: this.$route.params.lang}});
+        }
+      }
 
       this.model = await MapModel.get(api, id)
 
@@ -131,12 +145,22 @@ export default {
         this.showModalDisconnected = false;
       });
 
+      this.model.on('idChanged', (e) => {
+          console.log("idChanged", this.model.id)
+          let params = Object.assign(this.$route.params, {id: this.model.id, lang: this.lang});
+          this.$router.push({name: this.$route.name, params: params})
+      });
+
       this.model.on('authenticated', (e) => {
         let authenticated = e.value
         if (!authenticated) {
-          let params = {params: {id: this.model.id, lang: this.lang}};
+          let params = Object.assign(this.$route.params, {id: this.model.id, lang: this.lang});
           this.$router.replace({name: this.$route.name, params: params})
         }
+      });
+
+      this.model.on('unauthorized', (e) => {
+        this.$refs.modalLogin.show()
       });
 
       // log-in if we have credentials
