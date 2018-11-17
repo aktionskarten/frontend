@@ -3,7 +3,7 @@
     <navbar :lang="lang"></navbar>
     <div class="container">
       <div class="jumbotron bg-white">
-        <h1 class="display-4">
+        <h1 class="display-3 d-none d-md-block text-center">
           {{$t('home.headline')}}
         </h1>
         <p class="lead">
