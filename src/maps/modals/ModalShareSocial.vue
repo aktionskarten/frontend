@@ -61,7 +61,7 @@ export default {
         place: this.model.place || 'unknown',
         linkPDF: this.model.exports.pdf,
       }
-      return this.$t('navbar.share.social.msg', params)
+      return this.$t('preview.share.social.msg', params)
     },
   }
 }

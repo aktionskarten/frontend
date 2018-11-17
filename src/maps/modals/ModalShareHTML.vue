@@ -2,7 +2,7 @@
   <b-modal
       v-bind:visible="visible"
       v-on:change="$emit('change', $event)"
-      size="lg" :title="$t('navbar.share.html.title')" @ok="$emit('ok')" hide-footer>
+      size="lg" :title="$t('preview.share.html.title')" @ok="$emit('ok')" hide-footer>
   <div class="container text-center">
     <div style="display: inline-block;">
       <div v-if="visible" v-html="iframe"></div>
@@ -14,7 +14,7 @@
 
 <script>
 export default {
-  name: 'navbar',
+  name: 'ModalShareHTML',
   props: ['visible', 'model', 'lang'],
   model: {
     prop: 'visible',
