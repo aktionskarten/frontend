@@ -4,10 +4,18 @@
       <template slot="name" v-if="model">{{model.name}}</template>
       <template v-if="model">
         <b-navbar-nav class="d-lg-none">
-          <b-nav-item :to="{name: 'map.edit', params: {id: model.id, secret: secret}}">{{$t('navbar.form')}}</b-nav-item>
-          <b-nav-item v-if="model.authenticated && secret" :to="{name: 'map.bbox', params: {id: model.id, secret: secret}}">{{$t('navbar.bbox')}}</b-nav-item>
-          <b-nav-item :to="{name: 'map', params: {id: model.id, secret: secret}}">{{$t('navbar.map')}}</b-nav-item>
-          <b-nav-item v-if="model.authenticated && secret" :to="{name: 'map.preview', params: {id: model.id, secret: secret}}">{{$t('navbar.preview')}}</b-nav-item>
+          <b-nav-item :to="{name: 'map.edit', params: {id: model.id, secret: secret}}">
+            {{$t('navsteps.form')}}
+          </b-nav-item>
+          <b-nav-item v-if="model.authenticated && secret" :to="{name: 'map.bbox', params: {id: model.id, secret: secret}}">
+            {{$t('navsteps.bbox')}}
+          </b-nav-item>
+          <b-nav-item :to="{name: 'map', params: {id: model.id, secret: secret}}">
+            {{$t('navsteps.map.' + (model && model.authenticated ? 'edit' : 'static') )}}
+          </b-nav-item>
+          <b-nav-item :to="{name: 'map.preview', params: {id: model.id, secret: secret}}">
+            {{$t('navsteps.preview')}}
+          </b-nav-item>
         </b-navbar-nav>
       </template>
 
