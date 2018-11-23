@@ -9,8 +9,8 @@
       <div class="text-center my-4">
         <b-dropdown :text="$t('preview.export.title')" class="m-md-2" variant="primary">
             <b-dropdown-item :href="model.exports.pdf">{{$t('preview.export.pdf')}}</b-dropdown-item>
-            <b-dropdown-item :href="model.exports.svg">{{$t('preview.export.png')}}</b-dropdown-item>
-            <b-dropdown-item :href="model.exports.png">{{$t('preview.export.svg')}}</b-dropdown-item>
+            <b-dropdown-item :href="model.exports.svg">{{$t('preview.export.svg')}}</b-dropdown-item>
+            <b-dropdown-item :href="model.exports.png">{{$t('preview.export.png')}}</b-dropdown-item>
         </b-dropdown>
         <b-dropdown :text="$t('preview.share.title')" class="m-md-2" variant="primary">
             <b-dropdown-item @click="showModalShareSocial=true">{{$t('preview.share.social.link')}}</b-dropdown-item>
