@@ -1,13 +1,13 @@
 <template>
 <b-navbar toggleable="lg" type="dark" variant="dark">
-  <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
-
   <router-link :to="{name: 'home', params: {lang: $route.params.lang}}">
     <b-navbar-brand class="d-flex align-items-center">
-       <img src="@/assets/logo.svg" alt="Logo" class="mr-2">
-       <slot name="name">Aktionskarten</slot>
+      <img src="@/assets/logo.svg" alt="Logo" class="mr-2">
+      <slot name="name">Aktionskarten</slot>
     </b-navbar-brand>
   </router-link>
+
+  <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
 
   <b-collapse is-nav id="nav_collapse">
     <slot>
