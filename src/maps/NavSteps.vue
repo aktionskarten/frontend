@@ -19,8 +19,8 @@
       <h5 class="col-12 col-lg-auto mb-0">
         <b-link id="popoverMap" :to="model && {name: 'map', params: {id: model.id, secret: secret, lang: lang}}" :disabled="!model || !!!model.bbox">
           <span class="badge mx-2" v-bind:class="[$route.name == 'map' ? 'badge-primary' : 'badge-secondary']"></span>
-          {{$t('navsteps.map.' + (model && model.authenticated ? 'edit' : 'static') )}}
-          <b-popover :show="$route.name == 'map' && model && model.authenticated"  ref="popover" target="popoverMap" placement="top" class="align-center">
+          {{$t('navsteps.map.' + (authenticated ? 'edit' : 'static') )}}
+          <b-popover :show="$route.name == 'map' && authenticated && isNew"  ref="popover" target="popoverMap" placement="top" class="align-center">
             <b-btn @click="$refs.popover.$emit('close')" class="close" aria-label="Close">
               <span class="d-inline-block" aria-hidden="true">&times;</span>
             </b-btn>
@@ -44,6 +44,42 @@
 export default {
   name: 'navsteps',
   props: ['model', 'secret', 'lang', 'absolute'],
+  data () {
+    return {
+      'features': 0
+    }
+  },
+  async mounted() {
+    await this.init();
+  },
+  watch: {
+    'model': 'init',
+  },
+  methods: {
+    async init() {
+      if (!this.model) {
+        return;
+      }
+
+      let update = async () => {
+        let features = await this.model.features();
+        this.features = features.count();
+      }
+
+      this.model.on('featureChanged', update);
+      this.model.on('featureDeleted', update);
+
+      update();
+    }
+  },
+  computed: {
+    authenticated() {
+      return this.model && this.model.authenticated;
+    },
+    isNew() {
+      return this.features == 0;
+    }
+  }
 }
 </script>
 
