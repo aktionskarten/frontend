@@ -1,6 +1,9 @@
 const i18n = {
   en: {
     translation: {
+      'error': {
+        'refused': "Could not connect to backend...",
+      },
       'navbar': {
         'home': 'Home',
         'tutorial': 'Tutorial',
@@ -18,21 +21,21 @@ const i18n = {
         'map': {
           'edit': 'Draw map',
           'static': 'Map',
-          'introduction': 'This map extract will be your new Aktionskarte. You can use the toolbar on left to place rally routes, markers or mark an area.',
+          'introduction': 'This map extract will be your new Aktionskarte. You can use the toolbar on the left to place rally routes, markers or mark an area. If you\'re done, click on preview.',
         },
         'preview': 'Preview'
       },
       'home': {
         'newMap': 'Create new map',
         'headline': 'Maps for you political actions',
-        'description': 'An Aktionskarte consists of of map extract where you can find important informations like a demo route or marked interesting places. These maps should help you and your comrades to locate yourself in an unkown area.',
+        'description': 'An Aktionskarte consists of a map extract where you can find important information like a demo route or individual points of interest. These maps should help you and your comrades to locate yourself in an unkown area.',
       },
       'tutorial': {
         'headline': 'How can I create an Aktionskarte?',
       },
       'preview': {
         'title': 'Map preview',
-        'description': 'Below you see how your final map would look like. You can export it in different formats for different use cases. For print use PDF, for sharing on social media or in messengers use PNG and if you want to enhance the map by yourself select SVG.',
+        'description': 'Below you see what your final map would look like. You can export it in different formats for different use cases. Use PDF for print, PNG for sharing on social media or messengers and SVG if you want to enhance the map using other software.',
         'generating': 'Generating preview',
         'export': {
           'title': 'Download',
@@ -57,11 +60,11 @@ const i18n = {
         'headline': 'Mail',
         'introduction': 'You have comments, questions or want to contact us? Just write us an eamil',
         'preGPG': 'If possible then encrypt your mail. Our PGP key can be found <a href="{{gpgLink}}">here</a>  or just get it from a public key server.',
-        'postGPG': 'You can as well download the key with your mail client. Pay attention that the <i>fingerprint</i> is the same as above.',
+        'postGPG': 'You can also download the key with your mail client. Pay attention that the <i>fingerprint</i> is the same as the one shown above.',
       },
       'remark': {
         'headline': 'Remark',
-        'description': 'Aktionskarten is inspired by the work of <a href="https://aktionskarten.noblogs.org/">Kartographische Aktion</a>. They provide maps for example for demonstrations. Furthermore they wrote a tutorial how you can make maps on your own. Our idea was to simplify this further. The icon set which we use is from them.'
+        'description': 'Aktionskarten is inspired by the work of <a href="https://aktionskarten.noblogs.org/">Kartographische Aktion</a>. They provide maps for example for demonstrations. Furthermore, they wrote a tutorial how you can make maps on your own. Our idea was to simplify this further. We use their icon set in our editor.'
       },
       'sources': {
         'headline': 'Sources',
@@ -105,7 +108,7 @@ const i18n = {
           'placeholderKey': 'Key',
           'placeholderValue': 'Value',
           'button': 'Add',
-          'description': 'You can save here information in so called key-value pairs. This could be <i>Twitter-@account</i>, <i>EA-0891234</i> or <i>Hashtag-#B0803</i>. They will be rendered on your map.',
+          'description': 'Here, you can save information in so called key-value pairs. This could be <i>Twitter-@account</i>, <i>EA-0891234</i> or <i>Hashtag-#B0803</i>. They will be rendered on your map.',
         },
         'modal': {
           'title': 'Map {{name}} has been created',
@@ -121,6 +124,9 @@ const i18n = {
   },
   de: {
     translation: {
+      'error': {
+        'refused': "Verbindung zum Server fehlgeschlagen...",
+      },
       'navbar': {
         'home': 'Überblick',
         'tutorial': 'Anleitung',
@@ -138,7 +144,7 @@ const i18n = {
         'map': {
           'edit': 'Aktion zeichnen',
           'static': 'Karte',
-          'introduction': 'Der Ausschnitt auf der Karte stellt deine Aktionskarte dar. Mittels der Toolbar links, kannst du Demorouten und Marker plazieren oder Gegenenden markieren.',
+          'introduction': 'Der Ausschnitt auf der Karte stellt deine Aktionskarte dar. Mittels der Toolbar links, kannst du Demorouten und Marker plazieren oder Gegenenden markieren. Wenn du fertig bist, klicke auf Vorschau.',
         },
         'preview': 'Vorschau'
       },
@@ -152,7 +158,7 @@ const i18n = {
       },
       'preview': {
         'title': 'Kartenvorschau',
-        'description': 'Weiter unten siehst du wie deine Karte aussehen würde. Du kannst sie in verschiedenen Formaten exportieren. Zum Ausdrucke nutze PDF, für das Teilen in Sozialen Netzwerken oder in Messengern nutze PNG und wenn du selbst deine Karte noch weiterverarbeiten willst wähle SVG.',
+        'description': 'Weiter unten siehst du wie deine Karte aussehen würde. Du kannst sie in verschiedenen Formaten exportieren. Zum Ausdrucken nutze PDF, für das Teilen in Sozialen Netzwerken oder in Messengern nutze PNG und wenn du selbst deine Karte noch in einem anderen Programm weiterverarbeiten willst, wähle SVG.',
         'generating': 'Vorschau wird generiert',
         'export': {
           'title': 'Herunterladen',
@@ -175,9 +181,9 @@ const i18n = {
       },
       'contact': {
         'headline': 'Mail',
-        'introduction': 'Ihr habt Anmerkungen, Fragen oder wollt mit uns in Kontakt treten? Schreibt uns einfach eine Mail',
-        'preGPG': 'Wenn möglich dann am besten verschlüsselt. Unser PGP Schlüssel findet ihr <a href="{{gpgLink}}">hier</a> oder ladet ihn von einem öffentlichen Schlüsselserver runter.',
-        'postGPG': 'Ihr könnt ihn natürlich auch über euren Mailclient runterladen. Achtet dabei dass der <i>Fingerprint</i> dem obigen entspricht.',
+        'introduction': 'Du hast Anmerkungen, Fragen oder willst mit uns in Kontakt treten? Schreib uns einfach eine Mail',
+        'preGPG': 'Wenn möglich dann am besten verschlüsselt. Unser PGP Schlüssel findest du <a href="{{gpgLink}}">hier</a> oder lade ihn von einem öffentlichen Schlüsselserver runter.',
+        'postGPG': 'Du kannst ihn natürlich auch über deinen Mailclient runterladen. Achte dabei, dass der <i>Fingerprint</i> dem obigen entspricht.',
       },
       'remark': {
         'headline': 'Anmerkungen',
@@ -211,13 +217,13 @@ const i18n = {
           'button': 'Kartenausschnitt ändern',
         },
         'date': {
-          'label': 'Date',
+          'label': 'Datum',
           'placeholder': 'Wann findet es statt?',
           'description': 'Datum und Zeit werden unter der Überschrift auf der Karte erscheinen',
         },
         'description': {
           'label': 'Beschreibung',
-          'placeholder': 'Pack hier deinen Aufruf rein. Er wird auf der Rückseite zum Beispiel beim PDF-Export auf der Rückseite der Aktionskarte erscheinen.'
+          'description': 'Pack hier deinen Aufruf rein. Er wird auf der Rückseite zum Beispiel beim PDF-Export auf der Rückseite der Aktionskarte erscheinen.'
         },
         'legend': {
           'label': 'Zusatzinfos',

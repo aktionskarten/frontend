@@ -25,7 +25,7 @@
         <b-form-group
             :label="$t('form.place.label')"
             label-for="placeInput"
-            :description="$t('form.name.description')"
+            :description="$t('form.place.description')"
             horizontal>
           <b-form-input id="placeInput" :placeholder="$t('form.place.placeholder')"
             v-model.trim="map.place"

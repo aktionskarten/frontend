@@ -4,7 +4,7 @@
     <div class="container">
       <h3 class="mt-3">{{$t('tutorial.headline')}}</h3>
       <p>
-        Not yet written
+        Not written yet.
       </p>
     </div>
   </div>
