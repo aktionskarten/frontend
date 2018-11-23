@@ -10,7 +10,9 @@
           {{$t('home.description')}}
         </p>
 
-        <b-card-group deck class="my-4">
+        <b-alert :show="failed" variant="danger">{{$t("error.refused")}}</b-alert>
+
+        <b-card-group deck class="my-4" v-if="!failed">
           <div class="row row-eq-height w-100">
             <b-link class="col-md-4 my-2" :to="{name:'map.new'}" style="min-height: 40vh">
               <div class="card h-100 text-center pt-1">
@@ -64,12 +66,14 @@ export default {
   data () {
     return {
       loading: false,
+      failed: false,
       maps: []
     }
   },
   methods: {
     async fetchMaps() {
       this.loading = true;
+      api.errorHandler = () => { this.failed = true}
       this.maps = await api.getAllMaps()
       this.loading = false;
     }
