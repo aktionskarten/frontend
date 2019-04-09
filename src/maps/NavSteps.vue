@@ -63,7 +63,6 @@ export default {
 
       let update = async () => {
         let features = await this.model.features();
-        this.features = features.count();
       }
 
       this.model.on('featureChanged', update);
