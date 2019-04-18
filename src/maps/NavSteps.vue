@@ -32,7 +32,7 @@
       <h5 class="col-12 col-lg-auto mb-0">
         <b-link :to="model && {name: 'map.preview', params: {id: model.id, secret: secret, lang: lang}}" :disabled="!model || !!!model.bbox">
           <span class="badge mx-2" v-bind:class="[$route.name == 'map.preview' ? 'badge-primary' : 'badge-secondary']"> </span>
-          {{$t('navsteps.preview')}}
+          {{$t(model.authenticated ? 'navsteps.preview' : 'navsteps.download')}}
         </b-link>
       </h5>
     </div>

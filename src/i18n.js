@@ -23,7 +23,8 @@ const i18n = {
           'static': 'Map',
           'introduction': 'This map extract will be your new Aktionskarte. You can use the toolbar on the left to place rally routes, markers or mark an area. If you\'re done, click on preview.',
         },
-        'preview': 'Preview'
+        'preview': 'Preview',
+        'download': 'Download'
       },
       'home': {
         'newMap': 'Create new map',
@@ -146,7 +147,8 @@ const i18n = {
           'static': 'Karte',
           'introduction': 'Der Ausschnitt auf der Karte stellt deine Aktionskarte dar. Mittels der Toolbar links, kannst du Demorouten und Marker plazieren oder Gegenenden markieren. Wenn du fertig bist, klicke auf Vorschau.',
         },
-        'preview': 'Vorschau'
+        'preview': 'Vorschau',
+        'download': 'Herunterladen'
       },
       'home': {
         'headline': 'Karten für deine direkte Aktion',
