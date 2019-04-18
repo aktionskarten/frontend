@@ -8,9 +8,9 @@
 
       <div class="text-center my-4">
         <b-dropdown :text="$t('preview.export.title')" class="m-md-2" variant="primary">
-            <b-dropdown-item :href="model.exports.pdf">{{$t('preview.export.pdf')}}</b-dropdown-item>
-            <b-dropdown-item :href="model.exports.svg">{{$t('preview.export.svg')}}</b-dropdown-item>
-            <b-dropdown-item :href="model.exports.png">{{$t('preview.export.png')}}</b-dropdown-item>
+            <b-dropdown-item :href="urls.pdf">{{$t('preview.export.pdf')}}</b-dropdown-item>
+            <b-dropdown-item :href="urls.svg">{{$t('preview.export.svg')}}</b-dropdown-item>
+            <b-dropdown-item :href="urls.png">{{$t('preview.export.png')}}</b-dropdown-item>
         </b-dropdown>
         <b-dropdown :text="$t('preview.share.title')" class="m-md-2" variant="primary">
             <b-dropdown-item @click="showModalShareSocial=true">{{$t('preview.share.social.link')}}</b-dropdown-item>
@@ -52,7 +52,13 @@ export default {
       loaded: false,
       showModalShareSocial: false,
       showModalShareHTML: false,
-      src: null
+      src: null,
+      urls: {
+        'pdf': null,
+        'svg': null,
+        'png': null
+      }
+
     }
   },
   watch: {
@@ -63,14 +69,23 @@ export default {
   },
   methods: {
     init() {
-    console.log("init", this.model)
-      if (!this.model || !this.model.exports) {
+      if (!this.model) {
         return;
       }
 
-      // svg seems too ressource intensive for clients
-      this.loaded = false;
-      this.src = this.model.exports.png + '?' + this.model.data.hash
+      // check if img is available every second
+      let url = this.model.renderLink('png')
+      fetch(url, {method: 'HEAD'}).then(response => {
+        if (response.status == 200) {
+          this.loaded = false;
+          this.urls.png = this.model.downloadLink('png')
+          this.urls.pdf = this.model.downloadLink('pdf')
+          this.urls.svg = this.model.downloadLink('svg')
+          this.src = this.urls.png
+        } else {
+          setTimeout(()=>this.init(), 1000);
+        }
+      });
     }
   },
 }
