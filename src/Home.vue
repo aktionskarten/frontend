@@ -36,17 +36,7 @@
               </div>
             </div>
 
-            <b-link class="col-12 col-md-4 my-2" :to="{name:'map', params: {id: map.id}}" v-for="map in maps" :key="map.id">
-              <b-card
-                  :title="map.name"
-                  :sub-title="map.datetime + '@' + map.place"
-                  :img-src="map.thumbnail"
-                  img-alt="Image"
-                  align="center"
-                  class="h-100"
-                  >
-              </b-card>
-            </b-link>
+            <map-card :entry="map" v-for="map in maps" :key="map.id"></map-card>
           </div>
         </b-card-group>
       </div>
@@ -56,12 +46,14 @@
 
 <script>
 
+import Card from '@/maps/Card.vue'
 import NavBar from '@/NavBar.vue'
 import {api} from '@/api.js'
+import {MapModel} from 'aktionskarten.js'
 
 export default {
   name: 'home',
-  components: {'navbar': NavBar},
+  components: {'navbar': NavBar, 'map-card': Card},
   props: ['lang'],
   data () {
     return {
@@ -74,7 +66,8 @@ export default {
     async fetchMaps() {
       this.loading = true;
       api.errorHandler = () => { this.failed = true}
-      this.maps = await api.getAllMaps()
+      let maps =  await api.getAllMaps()
+      this.maps = maps.map(m => new MapModel(api, m))
       this.loading = false;
     }
   },
