@@ -14,7 +14,7 @@
             {{$t('navsteps.map.' + (model && model.authenticated ? 'edit' : 'static') )}}
           </b-nav-item>
           <b-nav-item :to="{name: 'map.preview', params: {id: model.id, secret: secret}}">
-            {{$t('navsteps.preview')}}
+            {{$t(model.authenticated ? 'navsteps.preview' : 'navsteps.download')}}
           </b-nav-item>
         </b-navbar-nav>
       </template>
