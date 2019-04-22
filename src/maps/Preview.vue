@@ -73,17 +73,23 @@ export default {
         return;
       }
 
-      // check if img is available every second
+      // check if img is available every second (it will be rendered
+      // automatically if it's not yet rendered (in this case we a 202)
       let url = this.model.renderLink('png')
-      fetch(url, {method: 'HEAD'}).then(response => {
+      fetch(url, {
+        method: 'HEAD',
+        headers: new Headers({Accept: "application/json"})
+      }).then(response => {
         if (response.status == 200) {
           this.loaded = false;
           this.urls.png = this.model.downloadLink('png')
           this.urls.pdf = this.model.downloadLink('pdf')
           this.urls.svg = this.model.downloadLink('svg')
           this.src = this.urls.png
-        } else {
+        } else if (response.status == 202){
           setTimeout(()=>this.init(), 1000);
+        } else {
+          console.warn("not found");
         }
       });
     }
