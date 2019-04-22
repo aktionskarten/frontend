@@ -2,7 +2,7 @@
   <div class="container">
       <h2 class="text-center mt-4">{{ $t('preview.title')}}</h2>
 
-      <navsteps :model="model" :secret="secret" :lang="lang"></navsteps>
+      <navsteps v-if="model" :model="model" :secret="secret" :lang="lang"></navsteps>
 
       <p class="text-center my-0">{{ $t('preview.description')}}</p>
 
