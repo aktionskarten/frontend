@@ -32,13 +32,18 @@ export default {
       }
 
       // check if img is available every second
-      let url = this.entry.renderLink('thumbnail')
-      fetch(url, {method: 'HEAD'}).then(response => {
+      let url = this.entry.renderLink('png:small')
+      fetch(url, {
+        method: 'HEAD',
+        headers: new Headers({Accept: "application/json"})
+      }).then(response => {
         if (response.status == 200) {
           this.loaded = false;
-          this.thumbnail = this.entry.thumbnail
-        } else {
+          this.thumbnail = this.entry.downloadLink('png:small')
+        } else if (response.status == 202){
           setTimeout(()=>this.init(), 1000);
+        } else {
+          console.warn("not found");
         }
       });
     }
