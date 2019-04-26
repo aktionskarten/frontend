@@ -5,7 +5,7 @@
       <h2 class="text-center mt-4" v-if="isEditable">{{ $t(isNew ? 'form.createMap' : 'form.editMapTitle')}}</h2>
       <h2 class="text-center mt-4" v-else="isEditable">{{ $t('form.title')}}</h2>
 
-      <navsteps :model="model" :secret="secret" :lang="lang"></navsteps>
+      <navsteps v-if="model" :model="model" :secret="secret" :lang="lang"></navsteps>
 
       <b-form v-on:submit.prevent="onSubmit">
         <b-alert :show="invalidFeedback.general" dismissible fade variant="danger">{{invalidFeedback.general}}</b-alert>

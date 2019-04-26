@@ -1,7 +1,7 @@
 <template>
 <div class="w-100 h-100">
   <div id="map" class="w-100 h-100" v-pre></div>
-  <navsteps :model="model" :absolute="true" :secret="secret" :lang="lang"></navsteps>
+  <navsteps v-if="model" :model="model" :absolute="true" :secret="secret" :lang="lang"></navsteps>
 </div>
 </template>
 
