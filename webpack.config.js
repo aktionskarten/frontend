@@ -6,11 +6,12 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CompressionPlugin = require('compression-webpack-plugin');
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 
-
 module.exports = {
   entry: {
-    'babel-polyfill': 'babel-polyfill',
-    'main': './src/main.js'
+    'main': [
+      '@babel/polyfill',
+      './src/main.js'
+    ]
   },
   mode: 'development',
   output: {
@@ -27,7 +28,10 @@ module.exports = {
       {
         test: /\.js$/,
         loader: 'babel-loader',
-        exclude: /node_modules/
+        exclude: /node_modules/,
+        options: {
+          presets: [ '@babel/preset-env' ],
+        }
       },
       {
         test: /\.css$/,

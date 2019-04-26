@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@panter/vue-i18next": "^0.13.0",
-    "aktionskarten.js": "^0.0.1",
+    "aktionskarten.js": "^0.0.3",
     "bootstrap-vue": "^2.0.0-rc.11",
     "html-webpack-plugin": "^3.2.0",
     "i18next": "^12.0.0",
@@ -25,25 +25,20 @@
     "not ie <= 8"
   ],
   "devDependencies": {
-    "babel-core": "^6.26.3",
-    "babel-loader": "^7.1.5",
-    "babel-polyfill": "^6.26.0",
-    "babel-preset-env": "^1.6.0",
-    "babel-preset-es2015": "^6.24.1",
-    "babel-preset-stage-0": "^6.24.1",
-    "babel-preset-stage-3": "^6.24.1",
+    "@babel/core": "^7.4.3",
+    "@babel/polyfill": "^7.4.3",
+    "@babel/preset-env": "^7.4.3",
+    "babel-loader": "^8.0.5",
     "compression-webpack-plugin": "^2.0.0",
     "cross-env": "^5.0.5",
-    "css-loader": "^0.28.7",
+    "css-loader": "^2.1.1",
     "dotenv-webpack": "^1.5.7",
     "file-loader": "^2.0.0",
-    "i": "^0.3.6",
-    "npm": "^6.4.1",
     "vue-loader": "^15.4.2",
     "vue-style-loader": "^4.1.2",
     "vue-template-compiler": "^2.5.17",
     "webpack": "^4.6.0",
-    "webpack-bundle-analyzer": "^2.13.1",
+    "webpack-bundle-analyzer": "^3.3.2",
     "webpack-dev-server": "^3.1.9"
   }
 }
