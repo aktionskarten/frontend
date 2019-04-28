@@ -20,7 +20,7 @@
       </template>
 
       <template slot="navbar" v-if="model">
-        <b-navbar-nav class="ml-md-auto" v-if="model && model.exports">
+        <b-navbar-nav class="ml-md-auto" v-if="model">
           <b-nav-form>
             <b-btn  v-if="!model.authenticated" size="sm" variant="primary"  v-b-modal.modalLogin>
               {{$t('navbar.login')}}
