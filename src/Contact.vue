@@ -6,10 +6,9 @@
       <p>{{$t('contact.introduction')}}</p>
       <p>
         <a href="mailto:kontakt@aktionskarten.org">kontakt@aktionskarten.org</a>
-        [not active yet]
       </p>
       <p v-html="$t('contact.preGPG', {gpgLink: ''})"></p>
-      <pre>gpg --recv-keys 0xXXXXXXXXXXXXXXXXXXXXXXXXXXXX</pre>
+      <pre>gpg --recv-keys 189D850A57D9A947</pre>
       <p v-html="$t('contact.postGPG')"></p>
 
 
