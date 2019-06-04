@@ -7,7 +7,7 @@
             <div class="spinner"> </div>
         </div>
 
-        <b-card-body :title="entry.name" :sub-title="entry.datetime + '@' + entry.place"></b-card-body>
+        <b-card-body :title="entry.name" :sub-title="entry.datetime + ' @ ' + entry.place"></b-card-body>
     </b-card>
   </b-link>
 </template>
