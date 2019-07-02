@@ -31,6 +31,7 @@ export default {
       }
 
       if (!this.view) {
+        console.log("initializing view")
         this.view = new View('map', this.model)
         await this.view.init(this.lang);
       }

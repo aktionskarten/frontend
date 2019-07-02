@@ -108,6 +108,7 @@ export default {
       if (secret) {
         if (await this.model.login(secret)) {
           this.secret = secret;
+          this.setCookie()
           let params = {id: this.model.id, secret: secret, lang: this.lang};
           this.$router.replace({name: this.$route.name, params: params})
           return true;
@@ -161,10 +162,24 @@ export default {
       });
 
       // log-in if we have credentials
-      if (this.$route.params.secret) {
-        let secret = this.$route.params.secret
+      const secret = this.$route.params.secret || this.getCookie('secret')
+      if (secret) {
         this.login(secret);
       }
+    },
+    setCookie() {
+          const date = new Date();
+          const value = this.$route.params.id + ':' + this.secret
+          const years = 5
+          date.setTime(date.getTime() + (years*365*24*60*60*1000));
+          document.cookie = 'secret' + '=' + value + ';expires=' + date;
+    },
+    getCookie() {
+      const splitString = 'secret=' + this.$route.params.id + ':';
+      const cookies = decodeURIComponent(document.cookie).split(';');
+      const cookie = cookies.find(cookie => cookie.indexOf(splitString) == 0);
+      if (!cookie) return '';
+      return cookie.substring(splitString.length, cookie.length);
     }
   }
 }
