@@ -14,6 +14,8 @@ const i18n = {
         'login': 'Log in',
         'logout': 'Log out',
         'authorization': 'Authorization',
+        'published': 'Published',
+        'private': 'Private'
       },
       'navsteps': {
         'form': 'Basic Data',
@@ -38,6 +40,7 @@ const i18n = {
         'title': 'Map preview',
         'description': 'Below you see what your final map would look like. You can export it in different formats for different use cases. Use PDF for print, PNG for sharing on social media or messengers and SVG if you want to enhance the map using other software.',
         'generating': 'Generating preview',
+        'publish': 'Publish',
         'export': {
           'title': 'Download',
           'pdf': 'Print (PDF)',
@@ -138,6 +141,8 @@ const i18n = {
         'login': 'Anmelden',
         'logout': 'Abmelden',
         'authorization': 'Authorisierung',
+        'published': 'Öffentlich',
+        'private': 'Privat'
       },
       'navsteps': {
         'form': 'Grunddaten',
@@ -162,6 +167,7 @@ const i18n = {
         'title': 'Kartenvorschau',
         'description': 'Weiter unten siehst du wie deine Karte aussehen würde. Du kannst sie in verschiedenen Formaten exportieren. Zum Ausdrucken nutze PDF, für das Teilen in Sozialen Netzwerken oder in Messengern nutze PNG und wenn du selbst deine Karte noch in einem anderen Programm weiterverarbeiten willst, wähle SVG.',
         'generating': 'Vorschau wird generiert',
+        'publish': 'Veröffentlichen',
         'export': {
           'title': 'Herunterladen',
           'pdf': 'Ausdruck (PDF)',

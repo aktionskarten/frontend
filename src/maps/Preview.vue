@@ -6,17 +6,20 @@
 
       <p class="text-center my-0">{{ $t('preview.description')}}</p>
 
-      <div class="text-center my-4">
-        <b-dropdown :text="$t('preview.export.title')" class="m-md-2" variant="primary">
-            <b-dropdown-item :href="urls.pdf">{{$t('preview.export.pdf')}}</b-dropdown-item>
-            <b-dropdown-item :href="urls.svg">{{$t('preview.export.svg')}}</b-dropdown-item>
-            <b-dropdown-item :href="urls.png">{{$t('preview.export.png')}}</b-dropdown-item>
-        </b-dropdown>
-        <b-dropdown :text="$t('preview.share.title')" class="m-md-2" variant="primary">
-            <b-dropdown-item @click="showModalShareSocial=true">{{$t('preview.share.social.link')}}</b-dropdown-item>
-            <b-dropdown-item @click="showModalShareHTML=true">{{$t('preview.share.html.link')}}</b-dropdown-item>
-          </b-nav-item-dropdown>
-        </b-dropdown>
+      <div class="text-center my-4" v-if="model">
+        <b-button v-if="!model.published" @click="model.publish()" variant="primary">{{$t('preview.publish')}}</b-button>
+        <div v-else="model.published">
+          <b-dropdown :text="$t('preview.export.title')" class="m-md-2" variant="primary">
+              <b-dropdown-item :href="urls.pdf">{{$t('preview.export.pdf')}}</b-dropdown-item>
+              <b-dropdown-item :href="urls.svg">{{$t('preview.export.svg')}}</b-dropdown-item>
+              <b-dropdown-item :href="urls.png">{{$t('preview.export.png')}}</b-dropdown-item>
+          </b-dropdown>
+          <b-dropdown :text="$t('preview.share.title')" class="m-md-2" variant="primary">
+              <b-dropdown-item @click="showModalShareSocial=true">{{$t('preview.share.social.link')}}</b-dropdown-item>
+              <b-dropdown-item @click="showModalShareHTML=true">{{$t('preview.share.html.link')}}</b-dropdown-item>
+            </b-nav-item-dropdown>
+          </b-dropdown>
+        </div>
       </div>
 
       <modal-share-social v-model="showModalShareSocial" :model="model" :lang="lang" v-if="model"></modal-share-social>

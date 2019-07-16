@@ -1,8 +1,15 @@
 <template>
   <div class="w-100 h-100">
     <navbar :lang="lang">
-      <template slot="name" v-if="model">{{model.name}}</template>
+      <template slot="name" v-if="model">
+        {{model.name}}
+      </template>
       <template v-if="model">
+        <div v-if="model.authenticated">
+          <b-badge v-if="model.published" variant="success">{{$t('navbar.published')}}</b-badge>
+          <b-badge v-else variant="warning">{{$t('navbar.private')}}</b-badge>
+        </div>
+
         <b-navbar-nav class="d-lg-none">
           <b-nav-item :to="{name: 'map.edit', params: {id: model.id, secret: secret}}">
             {{$t('navsteps.form')}}
