@@ -6,8 +6,8 @@
       </template>
       <template v-if="model">
         <div v-if="model.authenticated">
-          <b-badge v-if="model.published" variant="success">Published</b-badge>
-          <b-badge v-else variant="warning">Private</b-badge>
+          <b-badge v-if="model.published" variant="success">{{$t('navbar.published')}}</b-badge>
+          <b-badge v-else variant="warning">{{$t('navbar.private')}}</b-badge>
         </div>
 
         <b-navbar-nav class="d-lg-none">

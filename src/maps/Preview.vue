@@ -7,7 +7,7 @@
       <p class="text-center my-0">{{ $t('preview.description')}}</p>
 
       <div class="text-center my-4" v-if="model">
-        <b-button v-if="!model.published" @click="model.publish()" variant="primary">Publish</b-button>
+        <b-button v-if="!model.published" @click="model.publish()" variant="primary">{{$t('preview.publish')}}</b-button>
         <div v-else="model.published">
           <b-dropdown :text="$t('preview.export.title')" class="m-md-2" variant="primary">
               <b-dropdown-item :href="urls.pdf">{{$t('preview.export.pdf')}}</b-dropdown-item>
