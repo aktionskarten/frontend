@@ -101,16 +101,19 @@ export default {
       }
     },
     logout () {
+      this.deleteCookie();
       this.model.logout();
       this.secret = null;
+      let params = {id: this.model.id, secret: null, lang: this.lang};
+      this.$router.replace({name: this.$route.name, params: params});
     },
     async login (secret) {
       if (secret) {
         if (await this.model.login(secret)) {
           this.secret = secret;
-          this.setCookie()
+          this.setCookie();
           let params = {id: this.model.id, secret: secret, lang: this.lang};
-          this.$router.replace({name: this.$route.name, params: params})
+          this.$router.replace({name: this.$route.name, params: params});
           return true;
         }
       }
@@ -162,24 +165,39 @@ export default {
       });
 
       // log-in if we have credentials
-      const secret = this.$route.params.secret || this.getCookie('secret')
+      const secret = this.$route.params.secret || this.getCookieSecret();
       if (secret) {
         this.login(secret);
       }
     },
+    cookieWarning() {
+      return confirm(this.$t('dialog.cookies'))
+    },
     setCookie() {
-          const date = new Date();
-          const value = this.$route.params.id + ':' + this.secret
-          const years = 5
-          date.setTime(date.getTime() + (years*365*24*60*60*1000));
-          document.cookie = 'secret' + '=' + value + ';expires=' + date;
+      if(this.getCookie() || this.cookieWarning() ) {
+        const date = new Date();
+        const value = this.$route.params.id + ':' + this.secret
+        const years = 5
+        date.setTime(date.getTime() + (years*365*24*60*60*1000));
+        document.cookie = this.getCookieKey() + this.secret + ';Path=/;expires=' + date;
+      }
+    },
+    getCookieKey() {
+      return 'secret=' + this.$route.params.id + ':';
     },
     getCookie() {
-      const splitString = 'secret=' + this.$route.params.id + ':';
+      const splitString = this.getCookieKey();
       const cookies = decodeURIComponent(document.cookie).split(';');
       const cookie = cookies.find(cookie => cookie.indexOf(splitString) == 0);
+      return cookie;
+    },
+    getCookieSecret() {
+      const cookie = this.getCookie();
       if (!cookie) return '';
-      return cookie.substring(splitString.length, cookie.length);
+      return cookie.substring(this.getCookieKey().length, cookie.length);
+    },
+    deleteCookie() {
+      document.cookie = this.getCookieKey() + '=;Path=/;expires=' + new Date();
     }
   }
 }

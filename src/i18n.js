@@ -1,6 +1,9 @@
 const i18n = {
   en: {
     translation: {
+      'dialog': {
+        'cookies':"Securty Warning.\n\nCookies will allow all people who have access to your computer to:\n1) know you have access to the map\n2) edit the map without a password\n\nBut they'll make it easier to login.\nDo you want cookies?"
+      },
       'error': {
         'refused': "Could not connect to backend...",
       },
@@ -128,6 +131,9 @@ const i18n = {
   },
   de: {
     translation: {
+      'dialog': {
+        'cookies':"Sicherheitswarnung.\n\nCookies erlauben Menschen, die Zugriff auf deinen Rechner haben:\n1. Die Karte ohne Passwort zu editieren\n2. herauszufinden, dass du Zugriff auf die Karte hast\n\nAllerdings machen sie das einloggen einfacher.\nWillst du die Cookies?"
+      },
       'error': {
         'refused': "Verbindung zum Server fehlgeschlagen...",
       },
