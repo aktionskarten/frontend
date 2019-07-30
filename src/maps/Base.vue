@@ -172,25 +172,28 @@ export default {
         const value = this.$route.params.id + ':' + this.secret
         const years = 5
         date.setTime(date.getTime() + (years*365*24*60*60*1000));
-        document.cookie = this.getCookieKey() + this.secret + ';Path=/;expires=' + date;
+        document.cookie = this.getCookieKey() + '=' + this.secret + ';Path=/;expires=' + date;
       }
     },
     getCookieKey() {
-      return 'secret=' + this.$route.params.id + ':';
+      return 'secret:' + this.$route.params.id;
     },
     getCookie() {
       const splitString = this.getCookieKey();
       const cookies = decodeURIComponent(document.cookie).split(';');
       const cookie = cookies.find(cookie => cookie.indexOf(splitString) == 0);
+      alert(cookie)
       return cookie;
     },
     getCookieSecret() {
       const cookie = this.getCookie();
       if (!cookie) return '';
-      return cookie.substring(this.getCookieKey().length, cookie.length);
+      const secret = cookie.substring(this.getCookieKey().length+1, cookie.length);
+      alert(secret)
+      return secret
     },
     deleteCookie() {
-      document.cookie = this.getCookieKey() + '=;Path=/;expires=' + new Date();
+      document.cookie = this.getCookieKey() + '=;Path=/;expires=' + new Date().getUTCDate();
     }
   }
 }
