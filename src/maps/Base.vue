@@ -182,15 +182,12 @@ export default {
       const splitString = this.getCookieKey();
       const cookies = decodeURIComponent(document.cookie).split(';');
       const cookie = cookies.find(cookie => cookie.indexOf(splitString) == 0);
-      alert(cookie)
       return cookie;
     },
     getCookieSecret() {
       const cookie = this.getCookie();
       if (!cookie) return '';
-      const secret = cookie.substring(this.getCookieKey().length+1, cookie.length);
-      alert(secret)
-      return secret
+      return cookie.substring(this.getCookieKey().length+1, cookie.length);
     },
     deleteCookie() {
       document.cookie = this.getCookieKey() + '=;Path=/;expires=' + new Date().getUTCDate();
