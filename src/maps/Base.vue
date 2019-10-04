@@ -120,12 +120,6 @@ export default {
       return false;
     },
     async fetchData () {
-      let id = this.$route.params.id
-      if (!id) {
-        this.model = new MapModel(api);
-        return;
-      }
-
       // generic error handler
       api.errorHandler = (error) => {
         if (error == 'UNAUTHORIZED') {
@@ -137,8 +131,15 @@ export default {
         }
       }
 
-      this.secret = this.$route.params.secret
-      this.model = await MapModel.get(api, id, this.secret)
+      let id = this.$route.params.id
+      let secret = this.$route.params.secret
+      if (id && secret) {
+        this.secret = secret;
+        this.model = await MapModel.get(api, id, secret)
+        return;
+      } else {
+        this.model = new MapModel(api);
+      }
 
       this.model.on('disconnect', (e) => {
         this.showModalDisconnected = true;
