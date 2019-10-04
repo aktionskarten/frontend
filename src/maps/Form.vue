@@ -165,14 +165,14 @@ export default {
     },
 
     updateRoute() {
-      if (!this.map.id) {
+      if (!this.model.id) {
         console.warn("can't updateRoute without valid id");
         return;
       }
 
       let params = {
-        id: this.map.id,
-        secret: this.secret || this.map.secret,
+        id: this.model.id,
+        secret: this.secret || this.model.secret,
         lang: this.lang
       };
       this.$router.push({name: 'map.edit', params: params})
@@ -203,20 +203,16 @@ export default {
       }
       try {
         this.busy = true;
-        if (this.isNew) {
-          let map = await api.createMap(this.map)
-          if (!map) {
-            throw {'general': 'Could not create map.'}
-          }
-          this.map = map;
-        } else {
-          let map = await this.model.save()
-          if (!map) {
-            throw {'general': 'Could not update map.'}
-          }
-          this.showAlert = 2
+        let showAlert = this.isNew
+        if (!await this.model.save()) {
+          let msg = this.isNew ? 'Could not create map.' : 'Could not update map.'
+          throw {'general': msg}
+        }
+        if (showAlert) {
+          this.showAlert = true
         }
       } catch (e) {
+        console.warn("error", e)
         for (let [k, v] of Object.entries(e)) {
           this.invalidFeedback[k] = this.$t(v, {keySeparator: null});
         }
