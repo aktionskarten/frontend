@@ -43,10 +43,10 @@
             horizontal>
           <b-row class="my-1">
             <b-col sm="3">
-              <b-form-input class="text-left" id="dateInput" type="date" v-model="map.date" :plaintext="!isEditable"></b-form-input>
+              <b-form-input class="text-left" id="dateInput" type="date" v-model="date" :plaintext="!isEditable"></b-form-input>
             </b-col>
-            <b-col sm="2">
-              <b-form-input class="text-left" id="timeInput" type="time" v-model="map.time" :plaintext="!isEditable"></b-form-input>
+            <b-col sm="3">
+              <b-form-input class="text-left" id="timeInput" type="time" v-model="time" :plaintext="!isEditable"></b-form-input>
             </b-col>
           </b-row>
         </b-form-group>
@@ -122,12 +122,6 @@ import ModalMapDelete from "@/maps/modals/ModalMapDelete.vue"
 import {MapModel} from 'aktionskarten.js'
 import {api} from '@/api.js'
 
-let mapDefaults = {
-  date: new Date().toISOString().slice(0, 10),
-  time: '14:00',
-  attributes: []
-}
-
 export default {
   props: ['model', 'secret', 'lang'],
   components: {
@@ -142,8 +136,8 @@ export default {
       showAlert: false,
       showModalMapDelete: false,
       invalidFeedback: {name: null},
-      map: mapDefaults,
-      newAttribute: {key: '', value: ''}
+      map: {},
+      newAttribute: {key: '', value: ''},
     }
   },
 
@@ -251,6 +245,29 @@ export default {
         return {name: 'map.bbox', params: params}
       }
     },
+    datetime() {
+      if (this.map.datetime) {
+        return new Date(this.map.datetime);
+      }
+      return new Date();
+    },
+    date: {
+      get() {
+        return this.datetime.toISOString().slice(0, 10);
+      },
+      set(value) {
+      }
+    },
+    time: {
+      get() {
+        let hours = this.datetime.getHours();
+        let minutes = this.datetime.getMinutes();
+        // always prefix with 0 if not 2 digits
+        return ("0" + hours).slice(-2) + ':' + ("0" + minutes).slice(-2)
+      },
+      set(value) {
+      }
+    }
   }
 }
 </script>
