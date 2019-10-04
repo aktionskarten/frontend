@@ -33,7 +33,7 @@
         </b-form-group>
 
         <b-form-group :label="$t('form.mapExtract.label')" v-if="!isNew" horizontal>
-          <b-form-input :value="map.bbox" plaintext></b-form-input>
+          <b-form-input :value="map.bbox && map.bbox.join(',')" plaintext></b-form-input>
         </b-form-group>
 
         <b-form-group
@@ -152,7 +152,6 @@ export default {
   },
 
   mounted () {
-    console.log("MapForm mounted");
     this.init();
   },
 
