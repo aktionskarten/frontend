@@ -132,11 +132,10 @@ export default {
       }
 
       let id = this.$route.params.id
-      let secret = this.$route.params.secret
-      if (id && secret) {
+      let secret = this.$route.params.secret // optional
+      if (id) {
         this.secret = secret;
         this.model = await MapModel.get(api, id, secret)
-        return;
       } else {
         this.model = new MapModel(api);
       }
