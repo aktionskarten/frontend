@@ -88,7 +88,7 @@ export default {
         headers: new Headers({Accept: "application/json"})
       }).then(response => {
         if (response.status == 200) {
-          this.loaded = false;
+          this.loaded = true;
           this.src = this.urls.png
         } else if (response.status == 202){
           setTimeout(()=>this.init(), 1000);
