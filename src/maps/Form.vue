@@ -66,7 +66,6 @@
         <b-form-group
           :label="$t('form.legend.label')"
           label-for="attributesInput"
-          :description="$t('form.legend.description')"
           horizontal>
 
           <dl class="mx-0 row" v-if="!isEditable" v-for="(val,i) in map.attributes" :key="val[0]+'-'+val[1]">
@@ -96,6 +95,10 @@
               </b-form>
             </b-list-group-item>
           </b-list-group>
+
+          <b-form-text v-html="$t('form.legend.description')">
+          </b-form-text>
+
         </b-form-group>
 
         <div class="float-md-right" v-if="isEditable">
