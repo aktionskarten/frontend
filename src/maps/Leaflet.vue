@@ -24,12 +24,11 @@ export default {
     'lang': function() { window.location.reload() }
   },
   mounted () {
-    console.log("MapLeaflet mounted");
     this.render();
   },
   methods: {
     async render () {
-      if (!this.model) {
+      if (!this.model || !this.model.id) {
         console.warn("aborting no model");
         return;
       }

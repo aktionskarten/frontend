@@ -120,11 +120,6 @@ export default {
       return false;
     },
     async fetchData () {
-      let id = this.$route.params.id
-      if (!id || (this.model && this.model.id == id)) {
-        return;
-      }
-
       // generic error handler
       api.errorHandler = (error) => {
         if (error == 'UNAUTHORIZED') {
@@ -132,11 +127,18 @@ export default {
           this.inputSecret = this.secret;
           this.$refs.modalLogin.show()
         } else {
-          this.$router.push({name: 'home', params: {lang: this.$route.params.lang}});
+          console.warn("error", error)
         }
       }
 
-      this.model = await MapModel.get(api, id)
+      let id = this.$route.params.id
+      let secret = this.$route.params.secret || this.getCookieSecret()
+      if (id) {
+        this.secret = secret;
+        this.model = await MapModel.get(api, id, secret)
+      } else {
+        this.model = new MapModel(api);
+      }
 
       this.model.on('disconnect', (e) => {
         this.showModalDisconnected = true;
@@ -146,16 +148,19 @@ export default {
         this.showModalDisconnected = false;
       });
 
-      this.model.on('idChanged', (e) => {
-          console.log("idChanged", this.model.id)
-          let params = Object.assign(this.$route.params, {id: this.model.id, lang: this.lang});
-          this.$router.push({name: this.$route.name, params: params})
+      this.model.on('created', (e) => {
+        this.secret = e.value.secret;
+        this.login(this.secret);
       });
 
       this.model.on('authenticated', (e) => {
         let authenticated = e.value
+        console.log(authenticated ? 'authenticated' : 'unauthenticated');
         if (!authenticated) {
           let params = Object.assign(this.$route.params, {id: this.model.id, lang: this.lang});
+          if ('secret' in params) {
+            delete params['secret'];
+          }
           this.$router.replace({name: this.$route.name, params: params})
         }
       });
@@ -163,12 +168,6 @@ export default {
       this.model.on('unauthorized', (e) => {
         this.$refs.modalLogin.show()
       });
-
-      // log-in if we have credentials
-      const secret = this.$route.params.secret || this.getCookieSecret();
-      if (secret) {
-        this.login(secret);
-      }
     },
     cookieWarning() {
       return confirm(this.$t('dialog.cookies'))
