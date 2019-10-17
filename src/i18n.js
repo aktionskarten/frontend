@@ -146,7 +146,7 @@ const i18n = {
         'exportAsPNG': 'als PNG',
         'login': 'Anmelden',
         'logout': 'Abmelden',
-        'authorization': 'Authorisierung',
+        'authorization': 'Autorisierung',
         'published': 'Öffentlich',
         'private': 'Privat'
       },
@@ -213,18 +213,18 @@ const i18n = {
         'editMapTitle': 'Karte bearbeiten',
         'editMap': 'Speichern',
         'deleteMap': 'Karte löschen',
-        'deleteText': 'Willst du wirklich diese Karte löschen?',
+        'deleteText': 'Willst du diese Karte wirklich löschen?',
         'cancel': 'Abbrechen',
         'saved': 'Gespeichert',
         'name': {
           'label': 'Name',
           'placeholder': 'Name der Aktion',
-          'description': 'Der Name wird als Überschrift oben links auf deiner Aktionskarte sein.',
+          'description': 'Der Name wird als Überschrift oben links auf deiner Aktionskarte stehen.',
         },
         'place': {
           'label': 'Ort',
           'placeholder': 'Ort der Aktion',
-          'description': 'Ein Ort ist notwendig damit die Leute wo deine Aktion stattfindet. Er wird auch auf der Karte unter dem Namen erscheinen.',
+          'description': 'Ein Ort ist notwendig, damit die Leute wissen wo deine Aktion stattfindet. Er wird auch auf der Karte unter dem Namen erscheinen.',
         },
         'mapExtract': {
           'label': 'Kartenausschnitt',
@@ -237,7 +237,7 @@ const i18n = {
         },
         'description': {
           'label': 'Beschreibung',
-          'description': 'Pack hier deinen Aufruf rein. Er wird auf der Rückseite zum Beispiel beim PDF-Export auf der Rückseite der Aktionskarte erscheinen.'
+          'description': 'Pack hier deinen Aufruf rein. Er wird zum Beispiel beim PDF-Export auf der Rückseite der Aktionskarte erscheinen.'
         },
         'legend': {
           'label': 'Zusatzinfos',
@@ -249,9 +249,9 @@ const i18n = {
         'modal': {
           'title': 'Karte {{name}} wurde erstellt',
           'button': 'Kartenausschnitt auswählen',
-          'introduction': 'Damit nur du und deine Freunde die Karte bearbeiten können gibt es ein zufallgeneriertes Passwort:',
+          'introduction': 'Damit nur du und deine Freunde die Karte bearbeiten können gibt es ein zufallsgeneriertes Passwort:',
           'adminLink': 'Admin-Link',
-          'adminLinkText': 'Nur wer im Besitz des Passworts ist kann die Karte bearbeiten. Heißt entweder speicherst du dir das Passwort gut ab oder du benutzt folgenden Admin-Link:',
+          'adminLinkText': 'Nur wer im Besitz des Passworts ist kann die Karte bearbeiten. Das heißt: Entweder speicherst du dir das Passwort gut ab oder du benutzt folgenden Admin-Link:',
           'publicLink': 'Public-Link',
           'publicLinkText': 'Mit allen anderen teilst du nur folgenden öffentlichen Link:'
         }
