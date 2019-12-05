@@ -148,11 +148,6 @@ export default {
         this.showModalDisconnected = false;
       });
 
-      this.model.on('created', (e) => {
-        this.secret = e.value.secret;
-        this.login(this.secret);
-      });
-
       this.model.on('authenticated', (e) => {
         let authenticated = e.value
         console.log(authenticated ? 'authenticated' : 'unauthenticated');
