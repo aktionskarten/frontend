@@ -254,6 +254,11 @@ export default {
         return this.datetime.toISOString().slice(0, 10);
       },
       set(value) {
+        let tmp = new Date(value)
+        this.datetime.setFullYear(tmp.getFullYear())
+        this.datetime.setMonth(tmp.getMonth())
+        this.datetime.setDate(tmp.getDate())
+        this.model.datetime = this.datetime;
       }
     },
     time: {
@@ -264,6 +269,10 @@ export default {
         return ("0" + hours).slice(-2) + ':' + ("0" + minutes).slice(-2)
       },
       set(value) {
+        let [hours, minutes] = value.split(':')
+        this.datetime.setHours(hours);
+        this.datetime.setMinutes(minutes);
+        this.model.datetime = this.datetime;
       }
     }
   }

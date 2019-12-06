@@ -14,14 +14,14 @@
 
         <b-card-group deck class="my-4" v-if="!failed">
           <div class="row row-eq-height w-100">
-            <b-link class="col-md-4 my-2" :to="{name:'map.new'}" style="min-height: 40vh">
-              <div class="card h-100 text-center pt-1">
+            <b-link class="col-12 col-md-4 my-2" :to="{name:'map.new'}">
+              <div class="card h-100 text-center">
                 <div class="circle rounded-circle bg-primary mt-4 mx-auto">
                   <div class="content">
                     <span class="text-light display-4">+</span>
                   </div>
                 </div>
-                <h4 class="card-title text-secondary pt-auto mt-auto mb-0 pb-5">
+                <h4 class="card-title text-secondary pt-5">
                   {{$t("home.newMap")}}
                 </h4>
               </div>
