@@ -43,7 +43,10 @@ const i18n = {
         'title': 'Map preview',
         'description': 'Below you see what your final map would look like. You can export it in different formats for different use cases. Use PDF for print, PNG for sharing on social media or messengers and SVG if you want to enhance the map using other software.',
         'generating': 'Generating preview',
-        'publish': 'Publish',
+        'publish': {
+          'label': 'Publish',
+          'description': 'Your map will not be listed on our website unless you publish it. Keep in mind that everyone who knows the URL of your map, can still access it.',
+        },
         'export': {
           'title': 'Download',
           'pdf': 'Print (PDF)',
@@ -173,7 +176,10 @@ const i18n = {
         'title': 'Kartenvorschau',
         'description': 'Weiter unten siehst du wie deine Karte aussehen würde. Du kannst sie in verschiedenen Formaten exportieren. Zum Ausdrucken nutze PDF, für das Teilen in Sozialen Netzwerken oder in Messengern nutze PNG und wenn du selbst deine Karte noch in einem anderen Programm weiterverarbeiten willst, wähle SVG.',
         'generating': 'Vorschau wird generiert',
-        'publish': 'Veröffentlichen',
+        'publish': {
+          'label': 'Veröffentlichen',
+          'description': 'Deine Karte wird nicht auf unserer Website angezeigt solange du sie nicht veröffentlich hast. Beachte dabei das jede*r die Karte dennoch aufrufen kann sofern sie den Link dazu kennt.',
+        },
         'export': {
           'title': 'Herunterladen',
           'pdf': 'Ausdruck (PDF)',

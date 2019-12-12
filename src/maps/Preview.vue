@@ -5,10 +5,8 @@
       <navsteps v-if="model" :model="model" :secret="secret" :lang="lang"></navsteps>
 
       <p class="text-center my-0">{{ $t('preview.description')}}</p>
-
       <div class="text-center my-4" v-if="model">
-        <b-button v-if="!model.published" @click="model.publish()" variant="primary">{{$t('preview.publish')}}</b-button>
-        <div v-else="model.published">
+        <div>
           <b-dropdown :text="$t('preview.export.title')" class="m-md-2" variant="primary">
               <b-dropdown-item :href="urls.pdf">{{$t('preview.export.pdf')}}</b-dropdown-item>
               <b-dropdown-item :href="urls.svg">{{$t('preview.export.svg')}}</b-dropdown-item>
@@ -33,6 +31,11 @@
           {{$t('preview.generating')}}
           </p>
         </div>
+      </div>
+
+      <p class="text-center my-0">{{ $t('preview.publish.description')}}</p>
+      <div class="text-center my-4" v-if="model">
+        <b-button v-if="!model.published" @click="model.publish()" variant="primary">{{$t('preview.publish.label')}}</b-button>
       </div>
     </div>
   </div>
