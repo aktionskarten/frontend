@@ -77,9 +77,9 @@ and distribute it at your rally.
 
 Here, you can find the final version in different formats:
 
-* ![PDF](imgs/final.pdf)
-* ![PNG](imgs/final.png)
-* ![SVG](imgs/final.svg)
+* [PDF](imgs/final.pdf)
+* [PNG](imgs/final.png)
+* [SVG](imgs/final.svg)
 
 If you decide to publish the map, it will be displayed on the home page of
 aktionskarten.org. Otherwise, the map is not publicly viewable and the admin
