@@ -1,86 +1,86 @@
-Anleitung
-=========
+Brief tutorial
+==============
 
-ENGLISCH
+ENGLISH
 
-Aktionskarten sollen Menschen helfen, sich auf einer Demo oder anderen
-Veranstaltung zurecht zu finden. Mit Hilfes dieses Webdienst kannst du digitale
-aber auch analoge Karten erstellen. Durch eine ausgedruckten Karte bist du
-beispielsweise nicht auf dein Smartphone angewiesen. Hierdurch musst dir keine
-Sorgen um leere Akkus, Handys in den falschen Händen oder etwaiger
-Funkzellenabfragen machen.
+The Aktionskarten's purpose is to help people find their way around at a
+protest or any other event. With this service you can create digital and
+analogue maps. With a printed map in hand you don't have to rely on your
+smart phone in critical situations. You don't have to worry about empty
+batteries, wrong people getting hold of your phone, or possible cell site
+analyses.
 
-Im Folgenden eine kleine Anleitung wie du eine Karte erstellst und am Ende
-ausdruckst. Hierzu musst du folgende Schritte befolgen:
+In what follows you can find a short tutorial on how to create and print a map. Here are
+the steps to follow:
 
-1. Metadaten deiner Karte (Name, Ort und Zeit)
-2. Kartenausschnitt auswählen
-3. Interessante Orte, Routen oder Gegenden markieren
-4. Karten als PDF exportieren und ausdrucken
-5. Karten auf deiner Aktion verteilen
+1. Provide the meta data of your map (e.g. name, location, and time)
+2. Select a map extract
+3. Mark interesting places, routes, or areas
+4. Export the map as a PDF file and print it
+5. Distribute copies of the printed map at the event
 
 
-Karte erstellen
----------------
+Create a map
+------------
 
-Klicke [hier](https://staging.aktionskarten.org/#/de/maps/new) um eine neue
-Aktionskarten zu erstellen und ihr einen Namen, Ort und Datum zu geben. Deine
-Karte speicherst du indem du auf **Neue Aktionskarte erstellen** klickst.
+Click [here](https://staging.aktionskarten.org/#/en/maps/new) in order to create
+a new map and give it a name, location, and appointed day and time.
+To save the map, click on **Create new map**.
 
-Damit nur du und deine Freunde die Karten bearbeiten können, wird für jede Karte
-ein zufälliges Passwort generiert. Merke dir dieses, denn nur mit Hilfe dieses
-Passwort kannst du die Karte auch weiterhin bearbeiten. Um es einfacher zu
-gestalten, reicht es wenn du den Admin-Link dir abspeicherst. Hier ist das
-Passwort im Link selber integriert. Falls du die Karte auch digital Teilen
-willst, dann machst du das indem du den Public-Link verwendest. Über diesen
-ist die Karte nur einsehbar aber kann nicht verändert werden.
+For every map, a random password is generated. This guarantees that only you
+and your friends can edit the map. You should remember or save the password —
+only with it you are able to continue editing the map. The easiest way is to
+simply save the admin link for the map. Here, the password is integrated in the
+link itself. If you want to share the digital map, use the public map link. It
+enables people to view the map but not change it.
 
 ![Create a map](imgs/howto_map_created.jpg)
 
 
-Kartenausschnitt wählen
-----------------------
+Select a map extract
+--------------------
 
-Bisher hat deine Karte nur einen Namen, Datum und Ort. Als nächstes markierst
-du einen Kartenausschnitt. Hierzu klickst du auf **Zeichnen** und malst ein Din
-A4-Rechteck. Dieser Ausschnitt wird am Ende auf deinem Ausdruck erscheinen.
-Wenn du zufrieden mit deinem Ausschnitt bist, klicke auf **Weiter**. Ansonsten
-versuche es erneut über **Neuzeichnen**.
+So far, your map only has a name, an appointed day and time, as well as a
+location. In this step, you select a map extract. Click on **draw** to mark a
+DIN A4 rectangle. This is the extract that will appear on your printout at the
+end of the process. If you are satisfied with the extract, click on
+**Continue**. Otherwise, you can click on **Redraw** and select a new rectangle.
 
 ![Bounding box selected](imgs/howto_bbox_selected.jpg)
 
 
-Aktionskarten malen
--------------------
+Draw an action map
+------------------
 
-Meist ist es von Interesse, Orte, Routen oder Gegenden auf der Aktionskarte zu
-kennzeichnen. Dies könnten zum Beispiel Kundgebungen, ganze Gegenden oder
-Demostrecken sein. Im Folgenden exemplarisch wie du eine Demo darstellen
-könntest:
+It is often necessary to mark specific locations, routes, or areas on the map.
+For instance, if you want to depict the route for a rally, you should do
+following:
 
-1. Demoroute markieren
-2. Start und Endpunkt als Marker hervorheben
-3. Kundgebung markieren
+1. Mark the route: select **Route** from the tiles on the left-hand side.
+   Select the start and end point of the route. Click **Finish**.
+2. Highlight start and endpoint by placing markers on them: select **Marker**
+   on the left-hand side.
 
 ![Edit a map](imgs/howto_map_editing.jpg)
 
 
-Karten exportieren
-------------------
+Export the map
+--------------
 
-Wenn du zufrieden mit deiner Karte bist, kannst du dir unter **Vorschau** die
-Karte selbst angucken und auch in verschiedene Formate exportieren. Um die
-Karte auszudrucken, würdest du nun auf **Herunterladen** klicken und PDF
-auswählen. Das PDF kannst du jetzt ausdrucken und auf deiner Demo verteilen.
+When you are satisfied with your map, you can view the final result by selecting
+**Preview** from the steps at the bottom of the screen. In the preview step, you
+can also export the map in different file formats. If you want to print the map,
+you should go to **Download** and select **Print (PDF)**. Print the pdf file
+and distribute it at your rally.
 
 ![Preview a map](imgs/howto_map_preview.jpg)
 
-Die finale Version in verschiedenen Formaten kannst du hier finden:
+Here, you can find the final version in different formats:
 
 * ![PDF](imgs/final.pdf)
 * ![PNG](imgs/final.png)
 * ![SVG](imgs/final.svg)
 
-Wenn du die Karte veröffentlichst, dann erscheint sie auf der Startseite von
-aktionskarten.org. Ansonsten ist sie privat und auch nicht zu erraten, da ein
-Teil der Map-Karten-URL zufällig generiert ist.
+If you decide to publish the map, it will be displayed on the home page of
+aktionskarten.org. Otherwise, the map is not publicly viewable and the admin
+link cannot be guessed since a part of it is randomly generated.
