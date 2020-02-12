@@ -1,8 +1,6 @@
 Brief tutorial
 ==============
 
-ENGLISH
-
 The Aktionskarten's purpose is to help people find their way around at a
 protest or any other event. With this service you can create digital and
 analogue maps. With a printed map in hand you don't have to rely on your
