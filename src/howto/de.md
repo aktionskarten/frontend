@@ -3,7 +3,7 @@ Anleitung
 
 Aktionskarten sollen Menschen helfen, sich auf einer Demo oder anderen
 Veranstaltung zurecht zu finden. Mit Hilfes dieses Webdienst kannst du digitale
-aber auch analoge Karten erstellen. Durch eine ausgedruckten Karte bist du
+aber auch analoge Karten erstellen. Durch eine ausgedruckte Karte bist du
 beispielsweise nicht auf dein Smartphone angewiesen. Hierdurch musst dir keine
 Sorgen um leere Akkus, Handys in den falschen Händen oder etwaiger
 Funkzellenabfragen machen.
@@ -25,11 +25,11 @@ Klicke [hier](https://staging.aktionskarten.org/#/de/maps/new) um eine neue
 Aktionskarten zu erstellen und ihr einen Namen, Ort und Datum zu geben. Deine
 Karte speicherst du indem du auf **Neue Aktionskarte erstellen** klickst.
 
-Damit nur du und deine Freunde die Karten bearbeiten können, wird für jede Karte
-ein zufälliges Passwort generiert. Merke dir dieses, denn nur mit Hilfe dieses
-Passwort kannst du die Karte auch weiterhin bearbeiten. Um es einfacher zu
-gestalten, reicht es wenn du den Admin-Link dir abspeicherst. Hier ist das
-Passwort im Link selber integriert. Falls du die Karte auch digital Teilen
+Damit nur du und deine Freund\*innen die Karten bearbeiten können, wird für jede
+Karte ein zufälliges Passwort generiert. Merke dir dieses, denn nur mit Hilfe
+dieses Passwort kannst du die Karte auch weiterhin bearbeiten. Um es einfacher
+zu gestalten, reicht es wenn du den Admin-Link dir abspeicherst. Hier ist das
+Passwort im Link selber integriert. Falls du die Karte auch digital teilen
 willst, dann machst du das indem du den Public-Link verwendest. Über diesen
 ist die Karte nur einsehbar aber kann nicht verändert werden.
 
