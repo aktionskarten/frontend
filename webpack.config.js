@@ -41,7 +41,7 @@ module.exports = {
         ],
       },
       {
-        test: /\.(png|jpg|gif|svg)$/,
+        test: /\.(png|jpg|gif|svg|pdf)$/,
         loader: 'file-loader',
         options: {
           name (file) {
@@ -52,6 +52,17 @@ module.exports = {
             return '[hash].[ext]'
           }
         }
+      },
+      {
+        test: /\.md$/,
+        use: [
+            {
+                loader: "html-loader"
+            },
+            {
+                loader: "markdown-loader",
+            }
+        ]
       }
     ]
   },
