@@ -33,7 +33,7 @@ Passwort im Link selber integriert. Falls du die Karte auch digital teilen
 willst, dann machst du das indem du den Public-Link verwendest. Über diesen
 ist die Karte nur einsehbar aber kann nicht verändert werden.
 
-![Create a map](imgs/howto_map_created.jpg)
+[![Karte erstellen](imgs/howto_map_created.jpg)](imgs/howto_map_created.png)
 
 
 Kartenausschnitt wählen
@@ -45,7 +45,7 @@ A4-Rechteck. Dieser Ausschnitt wird am Ende auf deinem Ausdruck erscheinen.
 Wenn du zufrieden mit deinem Ausschnitt bist, klicke auf **Weiter**. Ansonsten
 versuche es erneut über **Neuzeichnen**.
 
-![Bounding box selected](imgs/howto_bbox_selected.jpg)
+[![Ausschnit auswählen](imgs/howto_bbox_selected.jpg)](imgs/howto_bbox_selected.png)
 
 
 Aktionskarten malen
@@ -60,7 +60,7 @@ könntest:
 2. Start und Endpunkt als Marker hervorheben
 3. Kundgebung markieren
 
-![Edit a map](imgs/howto_map_editing.jpg)
+[![Karte bearbeiten](imgs/howto_map_editing.jpg)](imgs/howto_map_editing.png)
 
 
 Karten exportieren
@@ -71,7 +71,7 @@ Karte selbst angucken und auch in verschiedene Formate exportieren. Um die
 Karte auszudrucken, würdest du nun auf **Herunterladen** klicken und PDF
 auswählen. Das PDF kannst du jetzt ausdrucken und auf deiner Demo verteilen.
 
-![Preview a map](imgs/howto_map_preview.jpg)
+[![Kartenvorschau](imgs/howto_map_preview.jpg)](imgs/howto_map_preview.png)
 
 Die finale Version in verschiedenen Formaten kannst du hier finden:
 

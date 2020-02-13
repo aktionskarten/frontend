@@ -33,11 +33,8 @@ const i18n = {
       },
       'home': {
         'newMap': 'Create new map',
-        'headline': 'Maps for you political actions',
+        'headline': 'Maps for your actions',
         'description': 'An Aktionskarte consists of a map extract where you can find important information like a demo route or individual points of interest. These maps should help you and your comrades to locate yourself in an unkown area.',
-      },
-      'tutorial': {
-        'headline': 'How can I create an Aktionskarte?',
       },
       'preview': {
         'title': 'Map preview',
@@ -65,20 +62,6 @@ const i18n = {
             title: 'Embedd this map into your own website',
           }
         }
-      },
-      'contact': {
-        'headline': 'Mail',
-        'introduction': 'You have comments, questions or want to contact us? Just write us an eamil',
-        'preGPG': 'If possible then encrypt your mail. Our PGP key can be found <a href="{{gpgLink}}">here</a>  or just get it from a public key server.',
-        'postGPG': 'You can also download the key with your mail client. Pay attention that the <i>fingerprint</i> is the same as the one shown above.',
-      },
-      'remark': {
-        'headline': 'Remark',
-        'description': 'Aktionskarten is inspired by the work of <a href="https://aktionskarten.noblogs.org/">Kartographische Aktion</a>. They provide maps for example for demonstrations. Furthermore, they wrote a tutorial how you can make maps on your own. Our idea was to simplify this further. We use their icon set in our editor.'
-      },
-      'sources': {
-        'headline': 'Sources',
-        'description': 'All components of Aktionskarten are open source. You can find them here:',
       },
       'form': {
         'title': 'Map data',
@@ -165,12 +148,9 @@ const i18n = {
         'download': 'Herunterladen'
       },
       'home': {
-        'headline': 'Karten für deine direkte Aktion',
+        'headline': 'Karten für deine Aktion',
         'description': 'Eine Aktionskarte besteht aus einem Kartenausschnitt, in dem wichtige Informationen wie eine Demoroute oder interessante Orte markiert sind. So eine Karte soll dir und deinen Mitstreiter*innen helfen, sich am Ort des Geschehens leichter zurechtzufinden.',
         'newMap': 'neue Karte erstellen',
-      },
-      'tutorial': {
-        'headline': 'Wie erstelle ich eine Aktionskarte?',
       },
       'preview': {
         'title': 'Kartenvorschau',
@@ -198,20 +178,6 @@ const i18n = {
             title: 'Binde diese Karte in deine eigene Website ein',
           }
         }
-      },
-      'contact': {
-        'headline': 'Mail',
-        'introduction': 'Du hast Anmerkungen, Fragen oder willst mit uns in Kontakt treten? Schreib uns einfach eine Mail',
-        'preGPG': 'Wenn möglich dann am besten verschlüsselt. Unser PGP Schlüssel findest du <a href="{{gpgLink}}">hier</a> oder lade ihn von einem öffentlichen Schlüsselserver runter.',
-        'postGPG': 'Du kannst ihn natürlich auch über deinen Mailclient runterladen. Achte dabei, dass der <i>Fingerprint</i> dem obigen entspricht.',
-      },
-      'remark': {
-        'headline': 'Anmerkungen',
-        'description': 'Aktionskarten basiert auf Ideen und Arbeit von <a href="https://aktionskarten.noblogs.org/">Kartographische Aktion</a>. Sie stellen Karten zum Beispiel für Demonstrationen zur Verfügung und haben auch eine Anleitung verfasst wie du selbst solche Karten erstellen kannst. Unsere Idee war dies noch weiter zu vereinfachen. Die von uns verwendeten Bilder der Marker sind u.a. von ihnen.'
-      },
-      'sources': {
-        'headline': 'Quelltexte',
-        'description': 'Alle Komponenten von Aktionskarten sind freie Software. Du kannst sie hier finden:'
       },
       'form': {
         'title': 'Kartendaten',

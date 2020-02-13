@@ -1,33 +1,16 @@
 <template>
-  <div>
-    <navbar :lang="lang"></navbar>
-    <div id="markdown" class="container" v-html="howTo"></div>
-  </div>
+  <static-content :lang="lang" :files="files"></static-content>
 </template>
 
 <script>
-import NavBar from '@/NavBar.vue'
-import marked from 'marked'
-import howToEn from '@/howto/en.md'
-import howToDe from '@/howto/de.md'
+import StaticContent from '@/static/Content.vue'
+import howToEN from '@/static/howto_en.md'
+import howToDE from '@/static/howto_de.md'
 
 export default {
-  name: 'home',
-  components: {'navbar': NavBar},
+  name: 'Tutorial',
   props: ['lang'],
-  computed: {
-    howTo() {
-      let howTos = {en:howToEn, de:howToDe};
-      return marked(howTos[this.lang])
-    }
-  }
+  components: {'static-content': StaticContent},
+  data() { return { files: {en:howToEN, de:howToDE}} }
 }
 </script>
-
-<style>
-#markdown img {
-  width: 30em;
-  display: block;
-  margin: 0 auto;
-}
-</style>

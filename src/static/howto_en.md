@@ -32,7 +32,7 @@ simply save the admin link for the map. Here, the password is integrated in the
 link itself. If you want to share the digital map, use the public map link. It
 enables people to view the map but not change it.
 
-![Create a map](imgs/howto_map_created.jpg)
+[![Create a map](imgs/howto_map_created.jpg)](imgs/howto_map_created.png)
 
 
 Select a map extract
@@ -44,7 +44,7 @@ DIN A4 rectangle. This is the extract that will appear on your printout at the
 end of the process. If you are satisfied with the extract, click on
 **Continue**. Otherwise, you can click on **Redraw** and select a new rectangle.
 
-![Bounding box selected](imgs/howto_bbox_selected.jpg)
+[![Bounding box selected](imgs/howto_bbox_selected.jpg)](imgs/howto_bbox_selected.png)
 
 
 Draw an action map
@@ -59,7 +59,7 @@ following:
 2. Highlight start and endpoint by placing markers on them: select **Marker**
    on the left-hand side.
 
-![Edit a map](imgs/howto_map_editing.jpg)
+[![Edit a map](imgs/howto_map_editing.jpg)](imgs/howto_map_editing.png)
 
 
 Export the map
@@ -71,7 +71,7 @@ can also export the map in different file formats. If you want to print the map,
 you should go to **Download** and select **Print (PDF)**. Print the pdf file
 and distribute it at your rally.
 
-![Preview a map](imgs/howto_map_preview.jpg)
+[![Preview a map](imgs/howto_map_preview.jpg)](imgs/howto_map_preview.png)
 
 Here, you can find the final version in different formats:
 
