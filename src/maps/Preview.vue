@@ -34,7 +34,7 @@
       </div>
 
       <p class="text-center my-0">{{ $t('preview.publish.description')}}</p>
-      <div class="text-center my-4" v-if="model">
+      <div class="text-center my-4" v-if="model && !model.published">
         <b-button v-if="!model.published" @click="model.publish()" variant="primary">{{$t('preview.publish.label')}}</b-button>
       </div>
     </div>
