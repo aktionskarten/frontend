@@ -11,6 +11,8 @@ Create a `.env` file and define the backend endpoint.
 API_ENDPOINT=http://127.0.0.1:5000
 ```
 
+For development you can as well use https://staging.aktionskarten.org as API_ENDPOINT.
+
 ## Build Setup
 
 ``` bash
