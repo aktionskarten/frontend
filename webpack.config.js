@@ -56,12 +56,11 @@ module.exports = {
       {
         test: /\.md$/,
         use: [
-            {
-                loader: "html-loader"
-            },
-            {
-                loader: "markdown-loader",
-            }
+          {
+            loader: "html-loader",
+            options: { attrs: ['a:href', 'img:src'] }
+          },
+          "markdown-loader"
         ]
       }
     ]

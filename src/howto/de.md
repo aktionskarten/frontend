@@ -75,9 +75,9 @@ auswählen. Das PDF kannst du jetzt ausdrucken und auf deiner Demo verteilen.
 
 Die finale Version in verschiedenen Formaten kannst du hier finden:
 
-* [PDF](imgs/howto_map_final.pdf)
-* [PNG](imgs/howto_map_final.png)
-* [SVG](imgs/howto_map_final.svg)
+* [PDF](imgs/final.pdf)
+* [PNG](imgs/final.png)
+* [SVG](imgs/final.svg)
 
 Wenn du die Karte veröffentlichst, dann erscheint sie auf der Startseite von
 aktionskarten.org. Ansonsten ist sie privat und auch nicht zu erraten, da ein
