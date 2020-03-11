@@ -214,7 +214,7 @@ const i18n = {
         'legend': {
           'label': 'Zusatzinfos',
           'placeholderKey': 'Schlüssel: z.B. "Hastag"',
-          'placeholderValue': 'Wert: z.B. "#dresdennazifrei"',
+          'placeholderValue': 'Wert: z.B. "#metoo"',
           'button': 'Hinzufügen',
           'description': 'Hier gespeicherte Schlüssel-Werte-Paare sollen dir ermöglichen wichtige Informationen zu hinterlegen. Beispiele sind <i>Twitter-@account</i>, <i>EA-0891234</i> oder <i>Hashtag-#B0803</i>. Diese werden dann auf deiner Aktionskarte hinterlegt.',
         },
