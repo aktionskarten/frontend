@@ -70,9 +70,9 @@ export default {
       }
       let params = {
         name: this.model.name,
-        date: this.model.date || 'unknown',
-        place: this.model.place || 'unknown',
-        linkPDF: this.model.downloadLink('pdf')
+        pdfLink: this.model.customLink('pdf'),
+        pngLink: this.model.renderLink('png'),
+        twitterLink: this.model.customLink('twitter')
       }
       return this.$t('preview.share.social.msg', params)
     },
