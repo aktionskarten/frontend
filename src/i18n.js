@@ -98,8 +98,8 @@ const i18n = {
         },
         'legend': {
           'label': 'Extra information',
-          'placeholderKey': 'Key',
-          'placeholderValue': 'Value',
+          'placeholderKey': 'Key: e.g. "Hashtag"',
+          'placeholderValue': 'Value: e.g. "#metoo"',
           'button': 'Add',
           'description': 'Here, you can save information in so called key-value pairs. This could be <i>Twitter-@account</i>, <i>EA-0891234</i> or <i>Hashtag-#B0803</i>. They will be rendered on your map.',
         },
@@ -213,8 +213,8 @@ const i18n = {
         },
         'legend': {
           'label': 'Zusatzinfos',
-          'placeholderKey': 'Schlüssel',
-          'placeholderValue': 'Wert',
+          'placeholderKey': 'Schlüssel: z.B. "Hastag"',
+          'placeholderValue': 'Wert: z.B. "#dresdennazifrei"',
           'button': 'Hinzufügen',
           'description': 'Hier gespeicherte Schlüssel-Werte-Paare sollen dir ermöglichen wichtige Informationen zu hinterlegen. Beispiele sind <i>Twitter-@account</i>, <i>EA-0891234</i> oder <i>Hashtag-#B0803</i>. Diese werden dann auf deiner Aktionskarte hinterlegt.',
         },
