@@ -55,7 +55,7 @@ const i18n = {
           'social': {
             link: 'Social networks',
             title: 'Share this map on a social media plattform',
-            msg: 'Map for {{name}} on {{date}} in {{place}}\n\n{{-linkPDF}}',
+            msg: 'So you don\'t lose track: a map for printing {-pdfLink} and for sharing on messengers {-pngLink}!\n\n{-twitterLink}',
           },
           'html': {
             link: 'Blog (HTML)',
@@ -171,7 +171,7 @@ const i18n = {
           'social': {
             link: 'Soziale Netzwerke',
             title: 'Teile diese Karte in einem Sozialen Netzwerk',
-            msg: 'Aktionskarte für {{name}} am {{date}} in {{place}}\n\n{{-linkPDF}}',
+            msg: 'Damit du nicht den Überblick verlierst: eine Aktionskarten zum Ausdrucken {{-pdfLink}} und zum Teilen in Messengern {{-pngLink}}!\n\n{{-twitterLink}}'
           },
           'html': {
             link: 'Blog (HTML)',
