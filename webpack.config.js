@@ -1,5 +1,4 @@
 var path = require('path')
-var webpack = require('webpack')
 var Dotenv = require('dotenv-webpack');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const HtmlWebpackPlugin = require('html-webpack-plugin')
@@ -19,6 +18,10 @@ module.exports = {
     publicPath: '',
     filename: '[name].bundle.js',
   },
+  devServer: {
+    compress: true,
+    port: 8081
+  },
   module: {
     rules: [
       {
@@ -28,10 +31,6 @@ module.exports = {
       {
         test: /\.js$/,
         loader: 'babel-loader',
-        exclude: /node_modules/,
-        options: {
-          presets: [ '@babel/preset-env' ],
-        }
       },
       {
         test: /\.css$/,
@@ -66,15 +65,12 @@ module.exports = {
     ]
   },
   resolve: {
+    modules: ['node_modules'], //path.resolve('node_modules')],   // prevent use of different leaflet versions if packages use them in their package.json
     alias: {
+      // leaflet: path.resolve(__dirname, './node_modules/leaflet'),
       '@': path.resolve(__dirname, './src/'),
       'vue$': 'vue/dist/vue.esm.js'
     }
-  },
-  devServer: {
-    historyApiFallback: true,
-    noInfo: true,
-    overlay: true
   },
   performance: {
     hints: false
@@ -87,7 +83,7 @@ module.exports = {
     })
     //new BundleAnalyzerPlugin()
   ],
-  devtool: '#eval-source-map'
+  devtool: 'inline-source-map',
 }
 
 if (process.env.NODE_ENV === 'production') {
