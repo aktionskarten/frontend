@@ -4,6 +4,7 @@ const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPl
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CompressionPlugin = require('compression-webpack-plugin');
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
+const RemarkHTML = require('remark-html');
 
 module.exports = {
   entry: {
@@ -57,9 +58,16 @@ module.exports = {
         use: [
           {
             loader: "html-loader",
-            options: { attrs: ['a:href', 'img:src'] }
+            // options: { attrs: ['a:href', 'img:src'] }
           },
-          "markdown-loader"
+          {
+            loader: 'remark-loader',
+            options: {
+              remarkOptions: {
+                plugins: [RemarkHTML],
+              },
+            },
+          }
         ]
       }
     ]
