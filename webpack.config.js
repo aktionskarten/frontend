@@ -42,23 +42,13 @@ module.exports = {
       },
       {
         test: /\.(png|jpg|gif|svg|pdf|asc)$/,
-        loader: 'file-loader',
-        options: {
-          name (file) {
-            if (process.env.NODE_ENV === 'development') {
-              return '[path][name].[ext]'
-            }
-
-            return '[hash].[ext]'
-          }
-        }
+        type: 'asset/resource',
       },
       {
         test: /\.md$/,
         use: [
           {
             loader: "html-loader",
-            // options: { attrs: ['a:href', 'img:src'] }
           },
           {
             loader: 'remark-loader',
