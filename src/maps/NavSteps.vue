@@ -20,11 +20,11 @@
         <b-link id="popoverMap" :to="model && {name: 'map', params: {id: model.id, secret: secret, lang: lang}}" :disabled="!model || !!!model.bbox">
           <span class="badge mx-2" v-bind:class="[$route.name == 'map' ? 'badge-primary' : 'badge-secondary']"></span>
           {{$t('navsteps.map.' + (authenticated ? 'edit' : 'static') )}}
-          <b-popover :show="$route.name == 'map' && authenticated && isNew"  ref="popover" target="popoverMap" placement="top" class="align-center">
+          <b-popover :show="showPopup" ref="popover" target="popoverMap" placement="top" class="align-center" triggers="manual">
             <b-btn @click="$refs.popover.$emit('close')" class="close" aria-label="Close">
               <span class="d-inline-block" aria-hidden="true">&times;</span>
             </b-btn>
-            {{$t('navsteps.map.introduction')}}
+            {{$t('navsteps.map.introduction')}} {{isNew}}
           </b-popover>
         </b-link>
       </h5>
@@ -46,38 +46,38 @@ export default {
   props: ['model', 'secret', 'lang', 'absolute'],
   data () {
     return {
-      'features': 0
+      'isNew': false
     }
   },
   async mounted() {
     await this.init();
   },
   watch: {
-    'model': 'init',
+    'model': 'init'
   },
   methods: {
+    async update() {
+      let features = await this.model.features();
+      this.isNew = features.count() == 0;
+    },
     async init() {
+      console.log("init", this.isNew)
       if (!this.model) {
         return;
       }
 
-      let update = async () => {
-        let features = await this.model.features();
-        this.features = features.count();
-      }
+      this.model.on('featureAdded', this.update.bind(this));
+      this.model.on('featureDeleted', this.update.bind(this));
 
-      this.model.on('featureChanged', update);
-      this.model.on('featureDeleted', update);
-
-      update();
+      return this.update();
     }
   },
   computed: {
+    showPopup() {
+      return this.$route.name == 'map' && this.authenticated && this.isNew;
+    },
     authenticated() {
       return this.model && this.model.authenticated;
-    },
-    isNew() {
-      return this.features == 0;
     }
   }
 }
