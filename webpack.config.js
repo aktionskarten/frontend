@@ -5,6 +5,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CompressionPlugin = require('compression-webpack-plugin');
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 const RemarkHTML = require('remark-html');
+const node_modules = path.resolve('node_modules')
 
 module.exports = {
   entry: {
@@ -65,7 +66,8 @@ module.exports = {
   resolve: {
     modules: ['node_modules'], //path.resolve('node_modules')],   // prevent use of different leaflet versions if packages use them in their package.json
     alias: {
-      // leaflet: path.resolve(__dirname, './node_modules/leaflet'),
+      'leaflet': path.resolve(node_modules, 'aktionskarten.js/node_modules/leaflet'),
+      'leaflet-editable': path.resolve(node_modules, 'aktionskarten.js/node_modules/leaflet-editable'),
       '@': path.resolve(__dirname, './src/'),
       'vue$': 'vue/dist/vue.esm.js'
     }
