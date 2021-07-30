@@ -33,22 +33,29 @@ export default {
         return;
       }
 
-      var mode = this.$route.name == 'map.bbox' ? 'bbox' : ''
-      if (!this.view) {
-        this.view = new View('map', this.model, mode)
-        this.view.on('modeChanged', e => {
+      const getMode = (name) => name == 'map.bbox' ? 'bbox' : ''
+      const getRoute = (mode) => mode == 'bbox' ? 'map.bbox' : 'map'
 
-          console.log("changing to mode=" + e.value, e);
-
-          let params = {id: this.model.id, secret: this.secret, lang: this.lang};
-          let name = e.value == 'bbox' ? 'map.bbox' : 'map';
-          this.$router.push({name: name, params: params})
-        })
-
-        await this.view.init(this.lang);
-      } else {
-        this.view.mode = mode;
+      const currentMode = getMode(this.$route.name)
+      if (this.view) {
+        this.view.mode = currentMode;
+        return;
       }
+
+      this.view = new View('map', this.model, currentMode)
+      this.view.on('modeChanged', e => {
+        let route = getRoute(e.value)
+
+        if (route == this.$route.name) {
+          console.warn("already in this mode. ignoring.");
+          return;
+        }
+
+        let params = {id: this.model.id, secret: this.secret, lang: this.lang};
+        this.$router.push({name: route, params: params})
+      })
+
+      await this.view.init(this.lang);
     }
   }
 }
