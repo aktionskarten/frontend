@@ -35,7 +35,7 @@
     "@babel/preset-env": "^7.13.9",
     "@babel/register": "^7.13.8",
     "@babel/runtime": "^7.13.9",
-    "ava": "^3.13.0",
+    "ava": "^5.2.0",
     "babel-loader": "^8.1.0",
     "compression-webpack-plugin": "^7.1.2",
     "cross-env": "^7.0.3",
